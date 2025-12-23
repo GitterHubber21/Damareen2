@@ -1,4 +1,4 @@
-# For the English version check out the README-EN.md file.
+## For the English version check out the README-EN.md file.
 
 # Damareen
 
