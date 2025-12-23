@@ -1,3 +1,5 @@
+# For the English version check out the README-EN.md file.
+
 # Damareen
 
 Fantasy kártyajáték, amit a Dusza Árpád Országos Emlékverseny I. fordulójára dobtam össze. Backend Flask + SQLite, elöl van néhány statikus HTML a `web/` mappában. JWT auth, opcionális email verifikáció, rate limiting.
