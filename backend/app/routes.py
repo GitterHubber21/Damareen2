@@ -10,12 +10,6 @@ from app.utils import (
     verify_password, generate_token, require_auth, generate_unique_id,
     require_master, is_master_of_world, check_master_status
 )
-from app.email_service import (
-    send_verification_email, send_login_notification_email,
-    generate_verification_token, get_verification_expiry,
-    send_password_reset_email
-)
-from app.email_config import EmailConfig
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.attributes import flag_modified
 
@@ -102,8 +96,6 @@ def register():
     
     try:
         password_hash = hash_password(password)
-        verification_token = generate_verification_token()
-        verification_expires = get_verification_expiry()
         
         from app.utils import generate_unique_id
         for _ in range(5):
@@ -115,33 +107,20 @@ def register():
                     password_hash=password_hash,
                     world_ids=[],
                     settings={},
-                    email_verified=not EmailConfig.REQUIRE_EMAIL_VERIFICATION,
-                    verification_token=verification_token,
-                    verification_token_expires=verification_expires
+                    email_verified=True,
+                    verification_token=None,
+                    verification_token_expires=None
                 )
                 db.session.add(new_user)
                 db.session.commit()
-                send_verification_email(email, username, verification_token)
-                if EmailConfig.REQUIRE_EMAIL_VERIFICATION:
-                    return success_response({
-                        'message': 'Regisztráció sikeres. Kérjük, ellenőrizd az e-mail fiókodat a megerősítéshez.',
-                        'user': {
-                            'id': new_user.id,
-                            'username': new_user.username,
-                            'email': new_user.email,
-                            'email_verified': new_user.email_verified
-                        },
-                        'requires_verification': True
-                    }, 201)
-                else:
-                    from flask import current_app
-                    token = generate_token(new_user.id, current_app.config['SECRET_KEY'])
-                    return success_response({
-                        'message': 'Regisztráció sikeres.',
-                        'user': new_user.to_dict(),
-                        'token': token,
-                        'requires_verification': False
-                    }, 201)
+                
+                from flask import current_app
+                token = generate_token(new_user.id, current_app.config['SECRET_KEY'])
+                return success_response({
+                    'message': 'Regisztráció sikeres.',
+                    'user': new_user.to_dict(),
+                    'token': token
+                }, 201)
             except IntegrityError:
                 db.session.rollback()
                 continue
@@ -180,21 +159,8 @@ def login():
     if not verify_password(password, user.password_hash):
         return error_response('Érvénytelen hitelesítő adatok', 401)
     
-    if EmailConfig.REQUIRE_EMAIL_VERIFICATION:
-        if not user.email_verified:
-            verification_token = generate_verification_token()
-            verification_expires = get_verification_expiry()
-            user.verification_token = verification_token
-            user.verification_token_expires = verification_expires
-            db.session.commit()
-            
-            send_verification_email(user.email, user.username, verification_token)
-            return error_response('Az e-mail cím még nincs megerősítve. Új megerősítő e-mailt küldtünk.', 403)
-    
     from flask import current_app
     token = generate_token(user.id, current_app.config['SECRET_KEY'])
-    
-    send_login_notification_email(user.email, user.username)
     
     return success_response({
         'message': 'Bejelentkezés sikeres.',
@@ -266,147 +232,6 @@ def get_user():
         'username': user.username,
         'email': user.email,
         'settings': user.settings or {}
-    })
-
-
-@api.route('/user/password-reset', methods=['POST'])
-@ratelimit
-def request_password_reset():
-    data = request.get_json()
-    
-    if not data:
-        return error_response('A kérés törzse kötelező', 400)
-    
-    email = data.get('email', '').strip() if isinstance(data.get('email'), str) else ''
-    
-    if not email:
-        return error_response('Az e-mail kötelező', 400)
-    
-    user = User.query.filter_by(email=email).first()
-    
-    if not user:
-        return success_response({
-            'message': 'Ha az e-mail cím regisztrálva van, jelszó visszaállítási linket küldtünk rá'
-        })
-    
-    reset_token = generate_verification_token()
-    reset_expires = datetime.utcnow() + timedelta(hours=1)
-    user.password_reset_token = reset_token
-    user.password_reset_token_expires = reset_expires
-    db.session.commit()
-    
-    send_password_reset_email(user.email, user.username, reset_token)
-    
-    return success_response({
-        'message': 'Ha az e-mail cím regisztrálva van, jelszó visszaállítási linket küldtünk rá'
-    })
-
-
-@api.route('/user/password-reset', methods=['PUT'])
-@ratelimit
-def reset_password():
-    data = request.get_json()
-    
-    if not data:
-        return error_response('A kérés törzse kötelező', 400)
-    
-    token = data.get('token', '')
-    new_password = data.get('password', '')
-    
-    if not token:
-        return error_response('A visszaállítási token kötelező', 400)
-    
-    if not new_password:
-        return error_response('Az új jelszó kötelező', 400)
-    
-    if not validate_password(new_password):
-        return error_response('A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell nagy- és kisbetűt, valamint számot', 400)
-    
-    user = User.query.filter_by(password_reset_token=token).first()
-    
-    if not user:
-        return error_response('Érvénytelen visszaállítási token', 400)
-    
-    if user.password_reset_token_expires < datetime.utcnow():
-        return error_response('A visszaállítási token lejárt', 400)
-    
-    user.password_hash = hash_password(new_password)
-    user.password_reset_token = None
-    user.password_reset_token_expires = None
-    db.session.commit()
-    
-    return success_response({
-        'message': 'A jelszó sikeresen megváltoztatva'
-    })
-
-
-@api.route('/user/verify-email', methods=['POST'])
-@ratelimit
-def verify_email():
-    data = request.get_json()
-    
-    if not data:
-        return error_response('A kérés törzse kötelező', 400)
-    
-    token = data.get('token', '')
-    
-    if not token:
-        return error_response('A megerősítő token kötelező', 400)
-    
-    user = User.query.filter_by(verification_token=token).first()
-    
-    if not user:
-        return error_response('Érvénytelen megerősítő token', 400)
-    
-    if user.verification_token_expires < datetime.utcnow():
-        return error_response('A megerősítő token lejárt', 400)
-    
-    user.email_verified = True
-    user.verification_token = None
-    user.verification_token_expires = None
-    db.session.commit()
-    
-    from flask import current_app
-    access_token = generate_token(user.id, current_app.config['SECRET_KEY'])
-    
-    return success_response({
-        'message': 'E-mail cím sikeresen megerősítve',
-        'user': user.to_dict(),
-        'token': access_token
-    })
-
-
-@api.route('/user/resend-verification', methods=['POST'])
-@ratelimit
-def resend_verification():
-    data = request.get_json()
-    
-    if not data:
-        return error_response('A kérés törzse kötelező', 400)
-    
-    email = data.get('email', '').strip() if isinstance(data.get('email'), str) else ''
-    
-    if not email:
-        return error_response('Az e-mail kötelező', 400)
-    
-    user = User.query.filter_by(email=email).first()
-    
-    if not user:
-        return error_response('Felhasználó nem található', 404)
-    
-    if user.email_verified:
-        return error_response('Az e-mail cím már megerősítve van', 400)
-    
-    verification_token = generate_verification_token()
-    verification_expires = get_verification_expiry()
-    user.verification_token = verification_token
-    user.verification_token_expires = verification_expires
-    db.session.commit()
-    
-    send_verification_email(user.email, user.username, verification_token)
-    
-    return success_response({
-        'message': 'Új megerősítő e-mailt küldtünk'
     })
 
 

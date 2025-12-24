@@ -7,24 +7,23 @@ import os
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
-    
-    frontend_url = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
-    
+        
     CORS(app, resources={
         r"/*": {
             "origins": [
-                frontend_url,
+                "https://damareen2.up.railway.app",
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
                 "http://localhost:7621",
                 "http://127.0.0.1:7621",
                 "http://localhost:5500",
-                "http://127.0.0.1:5500",
-                "https://damareen2.up.railway.app"
+                "http://127.0.0.1:5500"
             ],
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            "allow_headers": ["Content-Type", "Authorization"],
-            "supports_credentials": True,  # cookie-k miatt kell
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+            "allow_headers": ["Content-Type", "Authorization", "Accept", "Origin", "X-Requested-With"],
+            "expose_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True,
+            "max_age": 3600
         }
     })
     
