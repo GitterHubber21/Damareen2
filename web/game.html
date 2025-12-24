@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damareen - Game</title>
+    <title data-i18n="game.title">Damareen - Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="shortcut icon" href="src/favicon.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
+    <script src="src/i18n.js"></script>
     <style>
 * {
   margin: 0;
@@ -1456,7 +1457,7 @@ h1 {
     </style>
 </head>
 <body>
-    <button class="refresh-btn" id="refresh-btn" title="Frissítés">
+    <button class="refresh-btn" id="refresh-btn" data-i18n-title="game.refresh" title="Frissítés">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
             <path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
         </svg>
@@ -1474,32 +1475,32 @@ h1 {
         <div class="game-main-container">
             
             <div class="side-panel">
-                <h2 class="side-panel-title">Pakli</h2>
+                <h2 class="side-panel-title" data-i18n="game.deck">Pakli</h2>
                 <div class="side-panel-content" id="deckPanel">
-                    <div class="empty-message">Betöltés...</div>
+                    <div class="empty-message" data-i18n="common.loading">Betöltés...</div>
                 </div>
-                <button class="save-deck-btn" id="saveDeckBtn">Pakli mentése</button>
+                <button class="save-deck-btn" id="saveDeckBtn" data-i18n="game.saveDeck">Pakli mentése</button>
                 <div id="deckMessage" style="display: none;"></div>
             </div>
 
             
             <div class="dungeons-section">
-                <div class="section-title">Válassz ellenfél kazamatát</div>
+                <div class="section-title" data-i18n="game.chooseDungeon">Válassz ellenfél kazamatát</div>
                 <div class="dungeons-display" id="dungeons">
-                    <div class="empty-message">Betöltés...</div>
+                    <div class="empty-message" data-i18n="common.loading">Betöltés...</div>
                 </div>
             </div>
 
            
             <div class="side-panel">
-                <h2 class="side-panel-title">Gyűjtemény</h2>
+                <h2 class="side-panel-title" data-i18n="game.collection">Gyűjtemény</h2>
                 <div class="side-panel-content" id="collectionPanel">
-                    <div class="empty-message">Betöltés...</div>
+                    <div class="empty-message" data-i18n="common.loading">Betöltés...</div>
                 </div>
                 <div id="collectionMessage" style="display: none;"></div>
             </div>
         </div>
-        <button class="action-btn" id="fightBtn" style="max-width: 300px; font-size: 1.5rem; padding: 15px 40px; background: #c49b3b; border: 3px solid rgba(196, 155, 59, 0.5);" disabled>HARC!</button>
+        <button class="action-btn" id="fightBtn" style="max-width: 300px; font-size: 1.5rem; padding: 15px 40px; background: #c49b3b; border: 3px solid rgba(196, 155, 59, 0.5);" disabled data-i18n="game.fight">HARC!</button>
         <div id="fightErrorMessage" style="display: none; color: #ff6b6b; text-align: center; font-size: 1.1rem; margin-top: 10px; font-weight: 700; text-shadow: 0 2px 10px rgba(255, 107, 107, 0.5);"></div>
     </div>
 
@@ -1509,7 +1510,7 @@ h1 {
     <div class="settings-overlay" id="card-selection-modal">
         <div class="settings-popup" style="max-width: 800px; max-height: 80vh; overflow-y: auto;">
             <button class="close-settings-btn" id="close-card-selection">×</button>
-            <div class="settings-header">Melyik kártyát szeretnéd fejleszteni győzelem esetén?</div>
+            <div class="settings-header" data-i18n="game.chooseUpgradeCard">Melyik kártyát szeretnéd fejleszteni győzelem esetén?</div>
             <div id="card-selection-content" style="display: flex; flex-wrap: nowrap; gap: 15px; padding: 20px; overflow-x: auto; justify-content: flex-start;">
                 
             </div>
@@ -1630,23 +1631,23 @@ function showCardDetail(card) {
     cardDetailModal.style.display = 'flex';
 }
 
-function auth(){const t=localStorage.getItem('token');if(!t){statusEl.textContent='Nincs token';}return t;}
+function auth(){const t=localStorage.getItem('token');if(!t){statusEl.textContent=i18n.translate('auth.login.error') + 'No token';}return t;}
 /**
  * Kazamaták betöltése a szerverről és megjelenítése
  * A játékos ezek közül választhat ellenfelet
  */
 async function loadDungeons(){
-    dungeonsEl.innerHTML='<div class="empty-message">Betöltés...</div>';
+    dungeonsEl.innerHTML='<div class="empty-message">' + i18n.translate('common.loading') + '</div>';
     const token = auth();
-    if(!worldId){statusEl.textContent='Hiányzó world_id';return;}
+    if(!worldId){statusEl.textContent=i18n.translate('common.error') + ': Missing world_id';return;}
     try{
         const r = await fetch(`${API_URL}/game/dungeon?world_id=${encodeURIComponent(worldId)}`,{headers:{'Authorization':`Bearer ${token}`}});
         const data = await r.json();
-        if(!r.ok){dungeonsEl.innerHTML=`<div class="empty-message">${data.error||'Hiba'}</div>`;return;}
+        if(!r.ok){dungeonsEl.innerHTML=`<div class="empty-message">${data.error||i18n.translate('common.error')}</div>`;return;}
         dungeonsEl.innerHTML='';
         const dungeons = data.data.dungeons||[];
         if(dungeons.length === 0){
-            dungeonsEl.innerHTML='<div class="empty-message">Még nincs kazamata</div>';
+            dungeonsEl.innerHTML='<div class="empty-message">' + i18n.translate('game.noDungeons') + '</div>';
             return;
         }
         dungeons.forEach(d=>{
@@ -1674,20 +1675,20 @@ async function loadDungeons(){
                     
                     dungeonInput.value = '';
                     currentDungeonSize = null;
-                    statusEl.textContent = 'Válassz egy kazamatát';
+                    statusEl.textContent = i18n.translate('game.selectDungeon');
                     fightBtn.disabled = true;
                 } else {
                     
                     pack.classList.add('selected');
                     dungeonInput.value=d.id;
                     currentDungeonSize=d.number_of_cards;
-                    statusEl.textContent=`Kiválasztva: ${d.number_of_cards} kártyás kazamata`;
+                    statusEl.textContent=i18n.translate('game.selectedDungeon').replace('{count}', d.number_of_cards);
                     fightBtn.disabled=false;
                 }
             };
             dungeonsEl.appendChild(pack);
         });
-    }catch(e){dungeonsEl.innerHTML='<div class="empty-message">Hálózati hiba</div>';}
+    }catch(e){dungeonsEl.innerHTML='<div class="empty-message">' + i18n.translate('common.networkError') + '</div>';}
 }
 fightBtn.onclick = async () => {
     const fightErrorMessage = document.getElementById('fightErrorMessage');
@@ -1696,7 +1697,7 @@ fightBtn.onclick = async () => {
     const token = auth();
     const dungeonId = dungeonInput.value.trim();
     if(!dungeonId){
-        fightErrorMessage.textContent = 'Válassz egy kazamatát';
+        fightErrorMessage.textContent = i18n.translate('game.selectDungeon');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
@@ -1704,7 +1705,7 @@ fightBtn.onclick = async () => {
         return;
     }
     if(!worldId){
-        fightErrorMessage.textContent = 'world_id hiányzik';
+        fightErrorMessage.textContent = 'world_id ' + i18n.translate('common.missing');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
@@ -1713,7 +1714,7 @@ fightBtn.onclick = async () => {
     }
     const cardsInDeck = allCardsData.filter(c=>c.position && c.position > 0);
     if(cardsInDeck.length === 0){
-        fightErrorMessage.textContent = 'Nincs kártya a paklidban';
+        fightErrorMessage.textContent = i18n.translate('game.emptyDeck');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
@@ -1723,7 +1724,7 @@ fightBtn.onclick = async () => {
     
     
     if(currentDungeonSize !== null && cardsInDeck.length !== currentDungeonSize){
-        fightErrorMessage.textContent = 'A pakli és a kazamata kártyáinak száma meg kell egyezzen';
+        fightErrorMessage.textContent = i18n.translate('game.deckSizeMismatch');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
@@ -1735,7 +1736,7 @@ fightBtn.onclick = async () => {
     const cardIds = cardsInDeck.map(c => c.id);
     try {
         fightBtn.disabled = true;
-        fightBtn.textContent = 'Mentés...';
+        fightBtn.textContent = i18n.translate('common.saving');
         
         const response = await fetch(`${API_URL}/deck`, {
             method: 'POST',
@@ -1751,21 +1752,21 @@ fightBtn.onclick = async () => {
         if (response.ok) {
             showCardSelectionModal();
         } else {
-            fightErrorMessage.textContent = data.error || 'Hiba történt a pakli mentése során';
+            fightErrorMessage.textContent = data.error || i18n.translate('game.saveDeckError');
             fightErrorMessage.style.display = 'block';
             setTimeout(() => {
                 fightErrorMessage.style.display = 'none';
             }, 2000);
         }
     } catch (error) {
-        fightErrorMessage.textContent = 'Hálózati hiba történt';
+        fightErrorMessage.textContent = i18n.translate('common.networkError');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
         }, 2000);
     } finally {
         fightBtn.disabled = false;
-        fightBtn.textContent = 'HARC!';
+        fightBtn.textContent = i18n.translate('game.fight');
     }
 };
 /**
@@ -1774,15 +1775,15 @@ fightBtn.onclick = async () => {
  */
 async function loadCards(){
     const token = auth();
-    if(!worldId){statusEl.textContent='Hiányzó world_id';return;}
+    if(!worldId){statusEl.textContent=i18n.translate('common.error') + ': Missing world_id';return;}
     try{
         const r = await fetch(`${API_URL}/user/list/cards?world_id=${encodeURIComponent(worldId)}`,{headers:{'Authorization':`Bearer ${token}`}});
         const data = await r.json();
-        if(!r.ok){statusEl.textContent=data.error||'Hiba';return;}
+        if(!r.ok){statusEl.textContent=data.error||i18n.translate('common.error');return;}
         allCardsData = data.data.cards||[];
         renderDeckPanel();
         renderCollectionPanel();
-    }catch(e){statusEl.textContent='Hálózati hiba';}
+    }catch(e){statusEl.textContent=i18n.translate('common.networkError');}
 }
 
 /**
@@ -1824,7 +1825,7 @@ function renderDeckPanel(){
     };
     
     if(cardsInDeck.length === 0){
-        deckPanel.innerHTML='<div class="empty-message">Üres pakli</div>';
+        deckPanel.innerHTML='<div class="empty-message">' + i18n.translate('game.emptyDeck') + '</div>';
         return;
     }
     
@@ -1948,7 +1949,7 @@ function reorderDeckCards() {
     });
     
     renderDeckPanel();
-    showDeckMessage('Pakli sorrend megváltoztatva', true);
+    showDeckMessage(i18n.translate('game.deckReordered'), true);
 }
 
 /**
@@ -1962,12 +1963,12 @@ function addCardToDeck(cardId) {
     
     const currentDeckCards = allCardsData.filter(c => c.position && c.position > 0);
     if (currentDeckCards.length >= 6) {
-        showDeckMessage('A pakli maximum 6 kártyát tartalmazhat', false);
+        showDeckMessage(i18n.translate('game.deckFull'), false);
         return;
     }
     
     if (currentDeckCards.find(c => c.id === cardId)) {
-        showDeckMessage('Ez a kártya már a pakliban van', false);
+        showDeckMessage(i18n.translate('game.cardInDeck'), false);
         return;
     }
     
@@ -1976,7 +1977,7 @@ function addCardToDeck(cardId) {
     
     renderDeckPanel();
     renderCollectionPanel();
-    showDeckMessage(`Kártya hozzáadva a paklihoz (${newPosition}. pozíció)`, true);
+    showDeckMessage(i18n.translate('game.cardAdded').replace('{pos}', newPosition), true);
 }
 
 /**
@@ -1997,7 +1998,7 @@ function removeCardFromDeck(cardId) {
     
     renderDeckPanel();
     renderCollectionPanel();
-    showDeckMessage('Kártya eltávolítva a pakliból', true);
+    showDeckMessage(i18n.translate('game.cardRemoved'), true);
 }
 
 /**
@@ -2040,9 +2041,9 @@ function renderCollectionPanel(){
     if(cardsNotInDeck.length === 0){
         
         if(allCardsData.length === 0){
-            collectionPanel.innerHTML='<div class="empty-message">A játékmester még nem rendelt hozzád kártyákat!</div>';
+            collectionPanel.innerHTML='<div class="empty-message">' + i18n.translate('game.noCardsAssigned') + '</div>';
         } else {
-            collectionPanel.innerHTML='<div class="empty-message">Minden kártyád a pakliban van!</div>';
+            collectionPanel.innerHTML='<div class="empty-message">' + i18n.translate('game.allCardsInDeck') + '</div>';
         }
         return;
     }
@@ -2129,12 +2130,12 @@ saveDeckBtn.onclick = async () => {
     const cardsInDeck = allCardsData.filter(c => c.position && c.position > 0).sort((a,b) => a.position - b.position);
     
     if (cardsInDeck.length === 0) {
-        showDeckMessage('A pakli üres, adj hozzá legalább 1 kártyát', false);
+        showDeckMessage(i18n.translate('game.deckEmptySave'), false);
         return;
     }
     
     if (![1, 4, 6].includes(cardsInDeck.length)) {
-        showDeckMessage('A pakli 1, 4 vagy 6 kártyából kell álljon', false);
+        showDeckMessage(i18n.translate('game.deckSizeInvalid'), false);
         return;
     }
     
@@ -2142,7 +2143,7 @@ saveDeckBtn.onclick = async () => {
     
     try {
         saveDeckBtn.disabled = true;
-        saveDeckBtn.textContent = '⏳ Mentés...';
+        saveDeckBtn.textContent = '⏳ ' + i18n.translate('common.saving');
         
         const response = await fetch(`${API_URL}/deck`, {
             method: 'POST',
@@ -2156,23 +2157,23 @@ saveDeckBtn.onclick = async () => {
         const data = await response.json();
         
         if (response.ok) {
-            showDeckMessage(data.message || 'Pakli sikeresen mentve!', true);
+            showDeckMessage(data.message || i18n.translate('game.deckSaved'), true);
             await loadCards();
         } else {
-            showDeckMessage(data.error || 'Hiba történt a mentés során', false);
+            showDeckMessage(data.error || i18n.translate('game.saveDeckError'), false);
         }
     } catch (error) {
-        showDeckMessage('Hálózati hiba történt', false);
+        showDeckMessage(i18n.translate('common.networkError'), false);
     } finally {
         saveDeckBtn.disabled = false;
-        saveDeckBtn.textContent = 'Pakli mentése';
+        saveDeckBtn.textContent = i18n.translate('game.saveDeck');
     }
 };
 
 document.getElementById('refresh-btn').addEventListener('click', async () => {
     const refreshBtn = document.getElementById('refresh-btn');
     
-    const confirmed = confirm('A pakli módosításai el fognak veszni. Biztos szeretnél frissíteni?');
+    const confirmed = confirm(i18n.translate('game.confirmRefresh'));
     
     if (!confirmed) {
         return;
@@ -2181,17 +2182,17 @@ document.getElementById('refresh-btn').addEventListener('click', async () => {
     refreshBtn.disabled = true;
     refreshBtn.style.opacity = '0.5';
     
-    showCollectionMessage('Kártyák frissítése...', true);
+    showCollectionMessage(i18n.translate('game.refreshingCards'), true);
     
     await loadCards();
     
     refreshBtn.disabled = false;
     refreshBtn.style.opacity = '1';
     
-    showCollectionMessage('Gyűjtemény frissítve!', true);
+    showCollectionMessage(i18n.translate('game.collectionUpdated'), true);
 });
 
-if(worldId){statusEl.textContent=`world_id: ${worldId}`;} else {statusEl.textContent='Adj meg world_id-t az URL-ben';}
+if(worldId){statusEl.textContent=`world_id: ${worldId}`;} else {statusEl.textContent=i18n.translate('game.missingWorldId');}
 
 /**
  * Kártya választó modal megjelenítése harc előtt
@@ -2276,7 +2277,7 @@ function closeCardSelectionModal() {
  */
 async function startFight(selectedCardId) {
     const fightErrorMessage = document.getElementById('fightErrorMessage');
-    statusEl.textContent='⚔️ Harc indítása...';
+    statusEl.textContent='⚔️ ' + i18n.translate('game.startingFight');
     fightErrorMessage.style.display = 'none';
     
     const token = auth();
@@ -2287,8 +2288,8 @@ async function startFight(selectedCardId) {
         const r = await fetch(url,{headers:{'Authorization':`Bearer ${token}`}});
         const data = await r.json();
         if(!r.ok){
-            statusEl.textContent=data.error||'Hiba';
-            fightErrorMessage.textContent = data.error || 'Hiba történt a harc során';
+            statusEl.textContent=data.error||i18n.translate('common.error');
+            fightErrorMessage.textContent = data.error || i18n.translate('game.fightError');
             fightErrorMessage.style.display = 'block';
             setTimeout(() => {
                 fightErrorMessage.style.display = 'none';
@@ -2304,14 +2305,14 @@ async function startFight(selectedCardId) {
         
         
         const isPlayerWinner = winner === 'player';
-        statusEl.textContent = isPlayerWinner ? 'GYŐZTÉL!' : 'VESZTETTÉL';
+        statusEl.textContent = isPlayerWinner ? i18n.translate('game.youWon') : i18n.translate('game.youLost');
         
         
         await loadCards();
         await loadDungeons();
     }catch(e){
-        statusEl.textContent='Hálózati hiba';
-        fightErrorMessage.textContent = 'Hálózati hiba történt';
+        statusEl.textContent=i18n.translate('common.networkError');
+        fightErrorMessage.textContent = i18n.translate('common.networkError');
         fightErrorMessage.style.display = 'block';
         setTimeout(() => {
             fightErrorMessage.style.display = 'none';
