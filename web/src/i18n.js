@@ -1,0 +1,256 @@
+// Language translations for Damareen
+const translations = {
+    en: {
+        
+        'auth.login.title': 'Damareen Login',
+        'auth.login.username': 'Username or Email:',
+        'auth.login.password': 'Password:',
+        'auth.login.button': 'Login',
+        'auth.login.noAccount': "Don't have an account?",
+        'auth.login.registerLink': 'Register here',
+        'auth.login.error': 'Login error occurred: ',
+        
+        'auth.register.title': 'Damareen Register',
+        'auth.register.username': 'Username:',
+        'auth.register.email': 'Email:',
+        'auth.register.password': 'Password:',
+        'auth.register.confirmPassword': 'Confirm Password:',
+        'auth.register.button': 'Register',
+        'auth.register.hasAccount': 'Already have an account?',
+        'auth.register.loginLink': 'Login here',
+        'auth.register.passwordMismatch': 'Passwords do not match',
+        'auth.register.error': 'Registration error occurred: ',
+        
+        
+        'dashboard.title': 'Damareen',
+        'dashboard.worldsTitle': 'My Worlds',
+        'dashboard.noWorlds': 'No worlds yet',
+        'dashboard.createWorld': 'Create your first world!',
+        'dashboard.logout': 'Logout',
+        'dashboard.addWorld': 'Add World',
+        'dashboard.refresh': 'Refresh',
+        'dashboard.settings': 'Settings',
+        'dashboard.worldName': 'World Name',
+        'dashboard.actions': 'Actions',
+        'dashboard.play': 'Play',
+        'dashboard.edit': 'Edit',
+        'dashboard.delete': 'Delete',
+        'dashboard.confirmDelete': 'Are you sure you want to delete',
+        'dashboard.worldDeleted': 'World deleted successfully',
+        'dashboard.error': 'Error occurred',
+        
+        
+        'game.title': 'Game',
+        'game.refresh': 'Refresh',
+        'game.home': 'Home',
+        'game.loading': 'Loading...',
+        'game.error': 'Error loading game',
+        'game.turn': 'Turn',
+        'game.player': 'Player',
+        'game.score': 'Score',
+        'game.endTurn': 'End Turn',
+        'game.winner': 'Winner',
+        'game.gameOver': 'Game Over',
+        
+        
+        'world.title': 'World Creation',
+        'world.home': 'Home',
+        'world.save': 'Save',
+        'world.cancel': 'Cancel',
+        'world.worldName': 'World Name:',
+        'world.worldNamePlaceholder': 'Enter world name',
+        'world.mapSize': 'Map Size:',
+        'world.players': 'Number of Players:',
+        'world.difficulty': 'Difficulty:',
+        'world.easy': 'Easy',
+        'world.medium': 'Medium',
+        'world.hard': 'Hard',
+        'world.terrain': 'Terrain Type:',
+        'world.grass': 'Grass',
+        'world.forest': 'Forest',
+        'world.desert': 'Desert',
+        'world.snow': 'Snow',
+        'world.mountain': 'Mountain',
+        'world.water': 'Water',
+        'world.saved': 'World saved successfully',
+        'world.error': 'Error saving world',
+        'world.loading': 'Loading world data...',
+        'world.creating': 'Creating new world...',
+        'world.editing': 'Editing world...',
+        
+        
+        'common.loading': 'Loading...',
+        'common.error': 'Error',
+        'common.success': 'Success',
+        'common.confirm': 'Confirm',
+        'common.cancel': 'Cancel',
+        'common.save': 'Save',
+        'common.delete': 'Delete',
+        'common.edit': 'Edit',
+        'common.close': 'Close',
+        'common.yes': 'Yes',
+        'common.no': 'No',
+    },
+    hu: {
+        
+        'auth.login.title': 'Damareen Bejelentkezés',
+        'auth.login.username': 'Felhasználónév vagy E-mail:',
+        'auth.login.password': 'Jelszó:',
+        'auth.login.button': 'Bejelentkezés',
+        'auth.login.noAccount': 'Nincs még fiókod?',
+        'auth.login.registerLink': 'Regisztrálj itt',
+        'auth.login.error': 'Hiba történt a bejelentkezés során: ',
+        
+        'auth.register.title': 'Damareen Regisztráció',
+        'auth.register.username': 'Felhasználónév:',
+        'auth.register.email': 'E-mail:',
+        'auth.register.password': 'Jelszó:',
+        'auth.register.confirmPassword': 'Jelszó megerősítése:',
+        'auth.register.button': 'Regisztráció',
+        'auth.register.hasAccount': 'Van már fiókod?',
+        'auth.register.loginLink': 'Jelentkezz be itt',
+        'auth.register.passwordMismatch': 'A jelszavak nem egyeznek',
+        'auth.register.error': 'Hiba történt a regisztráció során: ',
+        
+        
+        'dashboard.title': 'Damareen',
+        'dashboard.worldsTitle': 'Világaim',
+        'dashboard.noWorlds': 'Még nincsenek világok',
+        'dashboard.createWorld': 'Hozd létre az első világodat!',
+        'dashboard.logout': 'Kijelentkezés',
+        'dashboard.addWorld': 'Világ hozzáadása',
+        'dashboard.refresh': 'Frissítés',
+        'dashboard.settings': 'Beállítások',
+        'dashboard.worldName': 'Világ neve',
+        'dashboard.actions': 'Műveletek',
+        'dashboard.play': 'Játék',
+        'dashboard.edit': 'Szerkesztés',
+        'dashboard.delete': 'Törlés',
+        'dashboard.confirmDelete': 'Biztosan törölni szeretnéd',
+        'dashboard.worldDeleted': 'Világ sikeresen törölve',
+        'dashboard.error': 'Hiba történt',
+        
+        
+        'game.title': 'Játék',
+        'game.refresh': 'Frissítés',
+        'game.home': 'Kezdőlap',
+        'game.loading': 'Betöltés...',
+        'game.error': 'Hiba a játék betöltése során',
+        'game.turn': 'Kör',
+        'game.player': 'Játékos',
+        'game.score': 'Pontszám',
+        'game.endTurn': 'Kör vége',
+        'game.winner': 'Győztes',
+        'game.gameOver': 'Játék vége',
+        
+        
+        'world.title': 'Világ létrehozása',
+        'world.home': 'Kezdőlap',
+        'world.save': 'Mentés',
+        'world.cancel': 'Mégse',
+        'world.worldName': 'Világ neve:',
+        'world.worldNamePlaceholder': 'Add meg a világ nevét',
+        'world.mapSize': 'Térkép mérete:',
+        'world.players': 'Játékosok száma:',
+        'world.difficulty': 'Nehézség:',
+        'world.easy': 'Könnyű',
+        'world.medium': 'Közepes',
+        'world.hard': 'Nehéz',
+        'world.terrain': 'Terep típusa:',
+        'world.grass': 'Fű',
+        'world.forest': 'Erdő',
+        'world.desert': 'Sivatag',
+        'world.snow': 'Hó',
+        'world.mountain': 'Hegy',
+        'world.water': 'Víz',
+        'world.saved': 'Világ sikeresen mentve',
+        'world.error': 'Hiba történt a világ mentése során',
+        'world.loading': 'Világ adatok betöltése...',
+        'world.creating': 'Új világ létrehozása...',
+        'world.editing': 'Világ szerkesztése...',
+        
+        
+        'common.loading': 'Betöltés...',
+        'common.error': 'Hiba',
+        'common.success': 'Sikeres',
+        'common.confirm': 'Megerősítés',
+        'common.cancel': 'Mégse',
+        'common.save': 'Mentés',
+        'common.delete': 'Törlés',
+        'common.edit': 'Szerkesztés',
+        'common.close': 'Bezárás',
+        'common.yes': 'Igen',
+        'common.no': 'Nem',
+    }
+};
+
+
+const i18n = {
+    currentLanguage: localStorage.getItem('language') || 'en',
+    
+    setLanguage(lang) {
+        if (translations[lang]) {
+            this.currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            this.updatePageLanguage();
+        }
+    },
+    
+    translate(key) {
+        return translations[this.currentLanguage][key] || key;
+    },
+    
+    updatePageLanguage() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = this.translate(key);
+            
+            if (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'email' || element.type === 'password')) {
+                if (element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                }
+            } else if (element.classList.contains('button-text')) {
+                element.textContent = translation;
+            } else {
+                element.textContent = translation;
+            }
+        });
+        
+        
+        const titleElement = document.querySelector('title[data-i18n]');
+        if (titleElement) {
+            titleElement.textContent = this.translate(titleElement.getAttribute('data-i18n'));
+        }
+        
+        
+        document.documentElement.lang = this.currentLanguage;
+    },
+    
+    init() {
+        this.updatePageLanguage();
+        
+        
+        const langToggle = document.getElementById('lang-toggle');
+        if (langToggle) {
+            this.updateToggleDisplay();
+            langToggle.addEventListener('click', () => {
+                const newLang = this.currentLanguage === 'en' ? 'hu' : 'en';
+                this.setLanguage(newLang);
+                this.updateToggleDisplay();
+            });
+        }
+    },
+    
+    updateToggleDisplay() {
+        const langToggle = document.getElementById('lang-toggle');
+        if (langToggle) {
+            langToggle.setAttribute('data-lang', this.currentLanguage);
+        }
+    }
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => i18n.init());
+} else {
+    i18n.init();
+}

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damareen - Bejelentkezés/Regisztráció</title>
+    <title data-i18n="auth.login.title">Damareen - Bejelentkezés/Regisztráció</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <link rel="shortcut icon" href="src/favicon.ico">
+    <script src="src/i18n.js"></script>
     <style>
         * {
             margin: 0;
@@ -234,56 +235,102 @@
                     font-size: 0.98rem;
                 }
             }
+        
+        /* Language toggle styles */
+        #lang-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: rgba(26, 26, 29, 0.8);
+            border: 2px solid rgba(196, 155, 59, 0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(196, 155, 59, 0.2);
+        }
+        
+        #lang-toggle:hover {
+            border-color: #C49B3B;
+            background: rgba(26, 26, 29, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 155, 59, 0.4);
+        }
+        
+        #lang-toggle::after {
+            content: '🇬🇧';
+        }
+        
+        #lang-toggle[data-lang="hu"]::after {
+            content: '🇭🇺';
+        }
+        
+        @media (max-width: 600px) {
+            #lang-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button id="lang-toggle" title="Change language / Nyelv váltása"></button>
     <div id="auth-container">
         <div id="login-form" class="form-container">
-            <h2>Damareen Login</h2>
+            <h2 data-i18n="auth.login.title">Damareen Login</h2>
             <form id="loginForm">
                 <div>
-                    <label for="login-username">Felhasználónév vagy E-mail:</label>
+                    <label for="login-username" data-i18n="auth.login.username">Felhasználónév vagy E-mail:</label>
                     <input type="text" id="login-username" name="username" required>
                 </div>
                 <div>
-                    <label for="login-password">Jelszó:</label>
+                    <label for="login-password" data-i18n="auth.login.password">Jelszó:</label>
                     <input type="password" id="login-password" name="password" required>
                 </div>
                 <button type="submit" id="login-btn">
-                    <span class="button-text">Bejelentkezés</span>
+                    <span class="button-text" data-i18n="auth.login.button">Bejelentkezés</span>
                     <span class="button-spinner"></span>
                 </button>
                 <p id="login-message"></p>
             </form>
-            <p>Nincs még fiókod? <a href="#" id="show-register">Regisztrálj itt</a></p>
+            <p><span data-i18n="auth.login.noAccount">Nincs még fiókod?</span> <a href="#" id="show-register" data-i18n="auth.login.registerLink">Regisztrálj itt</a></p>
         </div>
 
         <div id="register-form" class="form-container" style="display: none;">
-            <h2>Damareen Register</h2>
+            <h2 data-i18n="auth.register.title">Damareen Register</h2>
             <form id="registerForm">
                 <div>
-                    <label for="register-username">Felhasználónév:</label>
+                    <label for="register-username" data-i18n="auth.register.username">Felhasználónév:</label>
                     <input type="text" id="register-username" name="username" required>
                 </div>
                 <div>
-                    <label for="register-email">E-mail:</label>
+                    <label for="register-email" data-i18n="auth.register.email">E-mail:</label>
                     <input type="email" id="register-email" name="email" required>
                 </div>
                 <div>
-                    <label for="register-password">Jelszó:</label>
+                    <label for="register-password" data-i18n="auth.register.password">Jelszó:</label>
                     <input type="password" id="register-password" name="password" required>
                 </div>
                 <div>
-                    <label for="register-password-confirm">Jelszó megerősítése:</label>
+                    <label for="register-password-confirm" data-i18n="auth.register.confirmPassword">Jelszó megerősítése:</label>
                     <input type="password" id="register-password-confirm" name="password-confirm" required>
                 </div>
                 <button type="submit" id="register-btn">
-                    <span class="button-text">Regisztráció</span>
+                    <span class="button-text" data-i18n="auth.register.button">Regisztráció</span>
                     <span class="button-spinner"></span>
                 </button>
                 <p id="register-message"></p>
             </form>
-            <p>Van már fiókod? <a href="#" id="show-login">Jelentkezz be itt</a></p>
+            <p><span data-i18n="auth.register.hasAccount">Van már fiókod?</span> <a href="#" id="show-login" data-i18n="auth.register.loginLink">Jelentkezz be itt</a></p>
         </div>
     </div>
 
@@ -348,7 +395,7 @@
                     }
                 } catch (error) {
                     loginBtn.classList.remove('loading');
-                    loginMessage.textContent = 'Hiba történt a bejelentkezés során: ' + error.message;
+                    loginMessage.textContent = i18n.translate('auth.login.error') + error.message;
                     loginMessage.style.color = 'red';
                     console.error('Bejelentkezési hiba:', error);
                 }
@@ -364,7 +411,7 @@
                 const passwordConfirm = document.getElementById('register-password-confirm').value;
 
                 if (password !== passwordConfirm) {
-                    registerMessage.textContent = 'A jelszavak nem egyeznek';
+                    registerMessage.textContent = i18n.translate('auth.register.passwordMismatch');
                     registerMessage.style.color = 'red';
                     return;
                 }
@@ -395,7 +442,7 @@
                     }
                 } catch (error) {
                     registerBtn.classList.remove('loading');
-                    registerMessage.textContent = 'Hiba történt a regisztráció során: ' + error.message;
+                    registerMessage.textContent = i18n.translate('auth.register.error') + error.message;
                     registerMessage.style.color = 'red';
                     console.error('Regisztrációs hiba:', error);
                 }
