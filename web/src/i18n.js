@@ -41,6 +41,7 @@ const translations = {
         'dashboard.chooseWorld': 'Choose World',
         'dashboard.discovery': 'Discovery',
         'dashboard.start': 'Start',
+        'dashboard.hello': 'Welcome',
         
         'settings.title': 'Settings',
         'settings.deleteAccount': 'Delete Account',
@@ -124,7 +125,14 @@ const translations = {
         'game.reason.damage': 'Damage',
         'game.reason.type': 'Type',
         'game.reason.dungeon_fallback': 'Equal power cards',
+        'game.reason': 'Reason',
         'game.round': 'Round',
+        'game.type.fire': 'Fire',
+        'game.type.water': 'Water',
+        'game.type.earth': 'Earth',
+        'game.type.air': 'Air',
+        'game.cardCount.one': '{count} card',
+        'game.cardCount.other': '{count} cards',
         
         
         'world.title': 'World Creation',
@@ -206,6 +214,7 @@ const translations = {
         'dashboard.chooseWorld': 'Válassz világot',
         'dashboard.discovery': 'Felfedezés',
         'dashboard.start': 'Kezdés',
+        'dashboard.hello': 'Üdv',
         
         'settings.title': 'Beállítások',
         'settings.deleteAccount': 'Fiók törlése',
@@ -289,7 +298,14 @@ const translations = {
         'game.reason.damage': 'Sebzés',
         'game.reason.type': 'Típus',
         'game.reason.dungeon_fallback': 'Egyenlő erejű kártyák',
+        'game.reason': 'Ok',
         'game.round': 'Kör',
+        'game.type.fire': 'Tűz',
+        'game.type.water': 'Víz',
+        'game.type.earth': 'Föld',
+        'game.type.air': 'Levegő',
+        'game.cardCount.one': '{count} kártya',
+        'game.cardCount.other': '{count} kártya',
         
         
         'world.title': 'Világ létrehozása',

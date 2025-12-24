@@ -1216,7 +1216,7 @@
                 console.log('Logged in as:', userData.username);
                 const username = userData.username || userData.name || 'Ismeretlen';
                 const userDisplay = document.getElementById('user-display');
-                if (userDisplay) userDisplay.textContent = `Üdv, ${username}!`;
+                if (userDisplay) userDisplay.textContent = `${i18n.translate('dashboard.hello')}, ${username}!`;
                 
                 const settingsUsername = document.getElementById('settings-username');
                 if (settingsUsername) settingsUsername.textContent = username;

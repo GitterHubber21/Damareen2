@@ -1610,7 +1610,12 @@ function closeCardDetail() {
  */
 function showCardDetail(card) {
     const typeEmojis = {t:'🔥',v:'💧',f:'🌍',l:'🌬️'};
-    const typeNames = {t:'Tűz',v:'Víz',f:'Föld',l:'Levegő'};
+    const typeNames = {
+        t: i18n.translate('game.type.fire'),
+        v: i18n.translate('game.type.water'),
+        f: i18n.translate('game.type.earth'),
+        l: i18n.translate('game.type.air')
+    };
     
     const detailImage = document.getElementById('detailImage');
     detailImage.innerHTML = '';
@@ -1664,7 +1669,8 @@ async function loadDungeons(){
             }
             const info=document.createElement('div');
             info.className='dungeon-info';
-            info.textContent=`${d.number_of_cards} kártya`;
+            const countKey = d.number_of_cards === 1 ? 'game.cardCount.one' : 'game.cardCount.other';
+            info.textContent = i18n.translate(countKey).replace('{count}', d.number_of_cards);
             pack.appendChild(stack);
             pack.appendChild(info);
             pack.onclick=()=>{
@@ -1794,7 +1800,12 @@ async function loadCards(){
 function renderDeckPanel(){
     const deckPanel = document.getElementById('deckPanel');
     const typeEmojis = {t:'🔥',v:'💧',f:'🌍',l:'🌬️'};
-    const typeNames = {t:'Tűz',v:'Víz',f:'Föld',l:'Levegő'};
+    const typeNames = {
+        t: i18n.translate('game.type.fire'),
+        v: i18n.translate('game.type.water'),
+        f: i18n.translate('game.type.earth'),
+        l: i18n.translate('game.type.air')
+    };
     const cardsInDeck = allCardsData.filter(c=>c.position && c.position > 0).sort((a,b)=>a.position - b.position);
     deckCards = cardsInDeck;
     
@@ -2009,7 +2020,12 @@ function removeCardFromDeck(cardId) {
 function renderCollectionPanel(){
     const collectionPanel = document.getElementById('collectionPanel');
     const typeEmojis = {t:'🔥',v:'💧',f:'🌍',l:'🌬️'};
-    const typeNames = {t:'Tűz',v:'Víz',f:'Föld',l:'Levegő'};
+    const typeNames = {
+        t: i18n.translate('game.type.fire'),
+        v: i18n.translate('game.type.water'),
+        f: i18n.translate('game.type.earth'),
+        l: i18n.translate('game.type.air')
+    };
     const cardsNotInDeck = allCardsData.filter(c=>!c.position || c.position === 0);
     
     collectionPanel.innerHTML='';
@@ -2206,7 +2222,12 @@ function showCardSelectionModal() {
     
     
     const typeEmojis = {t:'🔥',v:'💧',f:'🌍',l:'🌬️'};
-    const typeNames = {t:'Tűz',v:'Víz',f:'Föld',l:'Levegő'};
+    const typeNames = {
+        t: i18n.translate('game.type.fire'),
+        v: i18n.translate('game.type.water'),
+        f: i18n.translate('game.type.earth'),
+        l: i18n.translate('game.type.air')
+    };
     
     allCardsData.forEach(card => {
         const cardEl = document.createElement('div');
@@ -2393,7 +2414,7 @@ async function playBattleAnimation(battles, overallWinner) {
     for (let i = 0; i < battles.length; i++) {
         
         const battle = battles[i];
-        roundIndicator.textContent = `Kör ${i + 1}`;
+        roundIndicator.textContent = `${i18n.translate('game.round')} ${i + 1}`;
         
         
         playerColumn.innerHTML = '';
@@ -2464,7 +2485,7 @@ async function playBattleAnimation(battles, overallWinner) {
         
         const badge = document.createElement('div');
         badge.className = 'winner-badge';
-        badge.textContent = isPlayerWin ? 'TE GYŐZTÉL!' : 'KAZAMATA GYŐZÖTT';
+        badge.textContent = isPlayerWin ? i18n.translate('game.youWon') : i18n.translate('game.dungeonWon');
         resultCard.appendChild(badge);
         
         const typeEmojis = {t:'🔥',v:'💧',f:'🌍',l:'🌬️'};
@@ -2503,15 +2524,15 @@ async function playBattleAnimation(battles, overallWinner) {
         
         
         const reasonTranslations = {
-            'damage': 'Sebzés',
-            'type': 'Típus',
-            'dungeon_fallback': 'Egyenlő erejű kártyák'
+            'damage': i18n.translate('game.reason.damage'),
+            'type': i18n.translate('game.reason.type'),
+            'dungeon_fallback': i18n.translate('game.reason.dungeon_fallback')
         };
         
         const reasonDiv = document.createElement('div');
         reasonDiv.className = 'battle-reason';
-        const translatedReason = reasonTranslations[battle.reason] || battle.reason || 'Győzelem!';
-        reasonDiv.textContent = `Ok: ${translatedReason}`;
+        const translatedReason = reasonTranslations[battle.reason] || battle.reason || i18n.translate('game.victory');
+        reasonDiv.textContent = `${i18n.translate('game.reason')}: ${translatedReason}`;
         resultCard.appendChild(reasonDiv);
         
         battleCenter.appendChild(resultCard);
@@ -2519,7 +2540,7 @@ async function playBattleAnimation(battles, overallWinner) {
         
         const clickPrompt = document.createElement('div');
         clickPrompt.className = 'click-to-continue';
-        clickPrompt.textContent = 'Kattints a folytatáshoz';
+        clickPrompt.textContent = i18n.translate('game.clickToContinue');
         document.getElementById('battleArena').appendChild(clickPrompt);
         
         
@@ -2541,13 +2562,13 @@ async function playBattleAnimation(battles, overallWinner) {
     }
     
     
-    roundIndicator.textContent = overallWinner === 'player' ? 'GYŐZELEM!' : 'VERESÉG';
+    roundIndicator.textContent = overallWinner === 'player' ? i18n.translate('game.victory') : i18n.translate('game.defeat');
     roundIndicator.style.fontSize = '2.5rem';
     
     
     const finalClickPrompt = document.createElement('div');
     finalClickPrompt.className = 'click-to-continue';
-    finalClickPrompt.textContent = 'Kattints akárhova a folytatáshoz';
+    finalClickPrompt.textContent = i18n.translate('game.clickAnywhere');
     document.getElementById('battleArena').appendChild(finalClickPrompt);
     
     
@@ -2590,7 +2611,7 @@ async function joinWorld(){
     try{
         const r = await fetch(`${API_URL}/game/join`,{method:'POST',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},body:JSON.stringify({invite_code:worldId})});
         const data = await r.json();
-        if(r.ok){statusEl.textContent='Csatlakozva a világhoz';}
+        if(r.ok){statusEl.textContent=i18n.translate('game.joinedWorld');}
         else if(r.status===409){
             if(data.error && data.error.includes('Már játék mester vagy')){
                 window.location.href = `/manage-world?world_id=${encodeURIComponent(worldId)}`;
