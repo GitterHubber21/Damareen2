@@ -10,9 +10,10 @@
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damareen - Dashboard</title>
+    <title data-i18n="dashboard.title">Damareen - Dashboard</title>
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <link rel="shortcut icon" href="src/favicon.ico">
+    <script src="src/i18n.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
@@ -1060,19 +1061,19 @@
 </head>
 <body>
     <div class="top-controls">
-        <button class="control-btn" id="add-world-btn" title="Világ hozzáadása">
+        <button class="control-btn" id="add-world-btn" title="Világ hozzáadása" data-i18n-title="dashboard.addWorld">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
             </svg>
         </button>
-        <button class="control-btn" id="refresh-btn" title="Frissítés">
+        <button class="control-btn" id="refresh-btn" title="Frissítés" data-i18n-title="dashboard.refresh">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
             </svg>
         </button>
     </div>
 
-    <button class="pause-btn" id="settings-btn" title="Beállítások">
+    <button class="pause-btn" id="settings-btn" title="Beállítások" data-i18n-title="dashboard.settings">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" fill="none" aria-hidden="true" focusable="false">
             <path d="M262.29,192.31a64,64,0,1,0,57.4,57.4A64.13,64.13,0,0,0,262.29,192.31ZM416.39,256a154.34,154.34,0,0,1-1.53,20.79l45.21,35.46A10.81,10.81,0,0,1,462.52,326l-42.77,74a10.81,10.81,0,0,1-13.14,4.59l-44.9-18.08a16.11,16.11,0,0,0-15.17,1.75A164.48,164.48,0,0,1,325,400.8a15.94,15.94,0,0,0-8.82,12.14l-6.73,47.89A11.08,11.08,0,0,1,298.77,470H213.23a11.11,11.11,0,0,1-10.69-8.87l-6.72-47.82a16.07,16.07,0,0,0-9-12.22,155.3,155.3,0,0,1-21.46-12.57,16,16,0,0,0-15.11-1.71l-44.89,18.07a10.81,10.81,0,0,1-13.14-4.58l-42.77-74a10.8,10.8,0,0,1,2.45-13.75l38.21-30a16.05,16.05,0,0,0,6-14.08c-.36-4.17-.58-8.33-.58-12.5s.21-8.27.58-12.35a16,16,0,0,0-6.07-13.94l-38.19-30A10.81,10.81,0,0,1,49.48,186l42.77-74a10.81,10.81,0,0,1,13.14-4.59l44.9,18.08a16.11,16.11,0,0,0,15.17-1.75A164.48,164.48,0,0,1,187,111.2a15.94,15.94,0,0,0,8.82-12.14l6.73-47.89A11.08,11.08,0,0,1,213.23,42h85.54a11.11,11.11,0,0,1,10.69,8.87l6.72,47.82a16.07,16.07,0,0,0,9,12.22,155.3,155.3,0,0,1,21.46,12.57,16,16,0,0,0,15.11,1.71l44.89-18.07a10.81,10.81,0,0,1,13.14,4.58l42.77,74a10.8,10.8,0,0,1-2.45,13.75l-38.21,30a16.05,16.05,0,0,0-6.05,14.08C416.17,247.67,416.39,251.83,416.39,256Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" fill="none"/>
         </svg>
@@ -1082,15 +1083,12 @@
     <div class="settings-overlay" id="settings-overlay">
         <div class="settings-popup">
             <button class="close-settings-btn" id="close-settings-btn">×</button>
-            <div class="settings-header">Beállítások</div>
+            <div class="settings-header" data-i18n="settings.title">Beállítások</div>
             <div class="settings-buttons">
-                <button class="settings-btn password-reset-btn" id="password-reset-btn">
-                    Jelszó megváltoztatása
-                </button>
-                <button class="settings-btn logout-btn-popup" id="logout-btn-popup">
+                <button class="settings-btn logout-btn-popup" id="logout-btn-popup" data-i18n="dashboard.logout">
                     Kijelentkezés
                 </button>
-                <button class="settings-btn delete-account-btn" id="delete-account-btn">
+                <button class="settings-btn delete-account-btn" id="delete-account-btn" data-i18n="settings.deleteAccount">
                     Fiók törlése
                 </button>
             </div>
@@ -1099,46 +1097,46 @@
 
     <div class="logout-modal-overlay" id="logout-modal-overlay">
         <div class="logout-modal">
-            <div class="logout-modal-header">Kijelentkezés</div>
-            <div class="logout-modal-message">
+            <div class="logout-modal-header" data-i18n="dashboard.logout">Kijelentkezés</div>
+            <div class="logout-modal-message" data-i18n="auth.logout.confirmMessage">
                 Biztosan ki szeretnél jelentkezni?
             </div>
             <div class="logout-modal-buttons">
-                <button class="logout-modal-btn logout-cancel-btn" id="logout-cancel-btn">Mégse</button>
-                <button class="logout-modal-btn logout-confirm-btn" id="logout-confirm-btn">Kijelentkezés</button>
+                <button class="logout-modal-btn logout-cancel-btn" id="logout-cancel-btn" data-i18n="common.cancel">Mégse</button>
+                <button class="logout-modal-btn logout-confirm-btn" id="logout-confirm-btn" data-i18n="dashboard.logout">Kijelentkezés</button>
             </div>
         </div>
     </div>
 
     <div class="delete-modal-overlay" id="delete-modal-overlay">
         <div class="delete-modal">
-            <div class="delete-modal-header">Fiók törlése</div>
-            <div class="delete-modal-message" id="delete-modal-message">
+            <div class="delete-modal-header" data-i18n="auth.deleteAccount.title">Fiók törlése</div>
+            <div class="delete-modal-message" id="delete-modal-message" data-i18n="auth.deleteAccount.confirmMessage">
                 Biztosan törölni szeretnéd a fiókodat? Ez a művelet nem vonható vissza!
             </div>
             <div class="delete-modal-input-group" id="delete-password-group" style="display: none;">
-                <label for="delete-password-input">Add meg a jelszavad:</label>
-                <input type="password" id="delete-password-input" placeholder="Jelszó">
+                <label for="delete-password-input" data-i18n="auth.deleteAccount.enterPassword">Add meg a jelszavad:</label>
+                <input type="password" id="delete-password-input" placeholder="Jelszó" data-i18n="common.password">
             </div>
             <div class="delete-modal-error" id="delete-modal-error"></div>
             <div class="delete-modal-buttons">
-                <button class="delete-modal-btn delete-cancel-btn" id="delete-cancel-btn">Mégse</button>
-                <button class="delete-modal-btn delete-confirm-btn" id="delete-confirm-btn">Tovább</button>
+                <button class="delete-modal-btn delete-cancel-btn" id="delete-cancel-btn" data-i18n="common.cancel">Mégse</button>
+                <button class="delete-modal-btn delete-confirm-btn" id="delete-confirm-btn" data-i18n="common.next">Tovább</button>
             </div>
         </div>
     </div>
 
     <div id="dashboard-container">
-        <h1>Válassz világot</h1>
+        <h1 data-i18n="dashboard.chooseWorld">Válassz világot</h1>
 
-        <div class="section-label">Felfedezés</div>
+        <div class="section-label" data-i18n="dashboard.discovery">Felfedezés</div>
         <div class="worlds-container">
             <div class="worlds-scroll" id="worlds-scroll">
                 
             </div>
         </div>
 
-        <div class="section-label">Saját világok</div>
+        <div class="section-label" data-i18n="dashboard.worldsTitle">Saját világok</div>
         <div class="worlds-container">
             <div class="worlds-scroll" id="own-worlds-scroll">
                 
@@ -1146,7 +1144,7 @@
         </div>
 
         <div class="action-buttons">
-            <button class="start-button" id="start-btn">Kezdés</button>
+            <button class="start-button" id="start-btn" data-i18n="dashboard.start">Kezdés</button>
         </div>
 
         <p id="message"></p>
@@ -1278,7 +1276,7 @@
                     renderWorlds(worlds, whereUserIsMaster, alreadyJoinedWorlds);
                 } else {
                     // Hibaüzenet megjelenítése
-                    messageElement.textContent = 'Hiba a világok betöltésekor';
+                    messageElement.textContent = i18n.translate('dashboard.loadError');
                     messageElement.style.color = '#ff6b6b';
                     setTimeout(() => {
                         messageElement.textContent = '';
@@ -1286,7 +1284,7 @@
                 }
             } catch (error) {
                 console.error('Error loading worlds:', error);
-                messageElement.textContent = 'Hiba a világok betöltésekor';
+                messageElement.textContent = i18n.translate('dashboard.loadError');
                 messageElement.style.color = '#ff6b6b';
                 setTimeout(() => {
                     messageElement.textContent = '';
@@ -1314,12 +1312,12 @@
             if (!worlds || Object.keys(worlds).length === 0) {
                 const emptyMessage = document.createElement('div');
                 emptyMessage.className = 'empty-worlds-message';
-                emptyMessage.textContent = 'Még nincs létrehozva új világ';
+                emptyMessage.textContent = i18n.translate('dashboard.noDiscoveryWorlds');
                 worldsScroll.appendChild(emptyMessage);
                 
                 const emptyOwnMessage = document.createElement('div');
                 emptyOwnMessage.className = 'empty-worlds-message';
-                emptyOwnMessage.textContent = 'Még nincs saját világod';
+                emptyOwnMessage.textContent = i18n.translate('dashboard.noOwnWorlds');
                 ownWorldsScroll.appendChild(emptyOwnMessage);
                 return;
             }
@@ -1404,12 +1402,12 @@
                         selectedWorldId = worldId;
                         
                         // Visszajelzés üzenet
-                        messageElement.textContent = `Kiválasztva: ${worldName}`;
+                        messageElement.textContent = `${i18n.translate('dashboard.selected')}${worldName}`;
                         messageElement.style.color = '#C49B3B';
                         updateStartButtonState();
                         setTimeout(() => {
                             if (selectedWorldId === worldId) {
-                                messageElement.textContent = `Kiválasztva: ${worldName}`;
+                                messageElement.textContent = `${i18n.translate('dashboard.selected')}${worldName}`;
                             }
                         }, 2000);
                     }
@@ -1420,14 +1418,14 @@
             if (!hasDiscoveryWorlds) {
                 const emptyMessage = document.createElement('div');
                 emptyMessage.className = 'empty-worlds-message';
-                emptyMessage.textContent = 'Még nincs létrehozva új világ';
+                emptyMessage.textContent = i18n.translate('dashboard.noDiscoveryWorlds');
                 worldsScroll.appendChild(emptyMessage);
             }
             
             if (!hasOwnWorlds) {
                 const emptyOwnMessage = document.createElement('div');
                 emptyOwnMessage.className = 'empty-worlds-message';
-                emptyOwnMessage.textContent = 'Még nincs saját világod';
+                emptyOwnMessage.textContent = i18n.translate('dashboard.noOwnWorlds');
                 ownWorldsScroll.appendChild(emptyOwnMessage);
             }
             
@@ -1462,7 +1460,7 @@
             if (!selectedWorldId) {
                 startBtn.classList.add('shake');
                 
-                messageElement.textContent = 'Kérlek válassz egy világot!';
+                messageElement.textContent = i18n.translate('dashboard.selectWorldError');
                 messageElement.style.color = '#ff6b6b';
                 
                 setTimeout(() => {
@@ -1503,7 +1501,7 @@
             refreshBtn.disabled = true;
             refreshBtn.style.opacity = '0.5';
             
-            messageElement.textContent = 'Világok betöltése...';
+            messageElement.textContent = i18n.translate('common.loading');
             messageElement.style.color = '#C49B3B';
             
             // Kiválasztás törlése
@@ -1516,7 +1514,7 @@
             refreshBtn.disabled = false;
             refreshBtn.style.opacity = '1';
             
-            messageElement.textContent = 'Frissítve!';
+            messageElement.textContent = i18n.translate('common.updated');
             messageElement.style.color = '#4caf50';
             setTimeout(() => {
                 messageElement.textContent = '';
@@ -1537,82 +1535,7 @@
     const closeSettingsBtn = document.getElementById('close-settings-btn');
     const logoutBtnPopup = document.getElementById('logout-btn-popup');
     const deleteAccountBtn = document.getElementById('delete-account-btn');
-    const passwordResetBtn = document.getElementById('password-reset-btn');
         
-        // === JELSZÓ VISSZAÁLLÍTÁS GOMB ===
-        /**
-         * Email küldése jelszó visszaállításhoz
-         */
-        // === JELSZÓ VISSZAÁLLÍTÁS GOMB ===
-        /**
-         * Email küldése jelszó visszaállításhoz
-         */
-        passwordResetBtn.addEventListener('click', async () => {
-            passwordResetBtn.disabled = true;
-            passwordResetBtn.textContent = 'Küldés...';
-            const token = localStorage.getItem('token');
-            const user = localStorage.getItem('user');
-            
-            // Hitelesítés ellenőrzése
-            if (!token || !user) {
-                window.location.href = 'auth';
-                return;
-            }
-            
-            // Email cím lekérése a felhasználói adatokból
-            let email = '';
-            try {
-                const userData = JSON.parse(user);
-                email = userData.email || '';
-            } catch (e) {
-                email = '';
-            }
-            
-            // Hiányzó email kezelése
-            if (!email) {
-                passwordResetBtn.textContent = 'Nincs e-mail';
-                passwordResetBtn.style.color = '#ff6b6b';
-                setTimeout(() => {
-                    passwordResetBtn.textContent = 'Jelszó megváltoztatása';
-                    passwordResetBtn.style.color = '';
-                    passwordResetBtn.disabled = false;
-                }, 2000);
-                return;
-            }
-            
-            // API kérés jelszó visszaállításhoz
-            try {
-                const response = await fetch(`${API_URL}/user/password-reset`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email })
-                });
-                const data = await response.json();
-                
-                // Válasz feldolgozása
-                if (response.ok && data.success) {
-                    passwordResetBtn.textContent = 'Email elküldve!';
-                    passwordResetBtn.style.color = '#C49B3B';
-                } else {
-                    passwordResetBtn.textContent = 'Hiba történt';
-                    passwordResetBtn.style.color = '#ff6b6b';
-                }
-            } catch (error) {
-                passwordResetBtn.textContent = 'Hiba történt';
-                passwordResetBtn.style.color = '#ff6b6b';
-            }
-            
-            // Gomb visszaállítása eredeti állapotra
-            setTimeout(() => {
-                passwordResetBtn.textContent = 'Jelszó megváltoztatása';
-                passwordResetBtn.style.color = '';
-                passwordResetBtn.disabled = false;
-            }, 2000);
-        });
-
         // === BEÁLLÍTÁSOK GOMB KATTINTÁS ===
         /**
          * Beállítások modal megnyitása
@@ -1714,11 +1637,11 @@
             const deleteModalError = document.getElementById('delete-modal-error');
             
             // Modal alaphelyzetbe állítása
-            deleteModalMessage.textContent = 'Biztosan törölni szeretnéd a fiókodat? Ez a művelet nem vonható vissza!';
+            deleteModalMessage.textContent = i18n.translate('auth.deleteAccount.confirmMessage');
             deletePasswordGroup.style.display = 'none';
             deletePasswordInput.value = '';
             deleteModalError.textContent = '';
-            deleteConfirmBtn.textContent = 'Tovább';
+            deleteConfirmBtn.textContent = i18n.translate('common.next');
             deleteConfirmBtn.disabled = false;
             
             let isPasswordStep = false;  // Jelszó megadási lépés jelzője
@@ -1735,9 +1658,9 @@
             const handleConfirm = async () => {
                 // Első lépés: figyelmeztetés
                 if (!isPasswordStep) {
-                    deleteModalMessage.textContent = 'A folytatáshoz add meg a jelszavadat:';
+                    deleteModalMessage.textContent = i18n.translate('auth.deleteAccount.enterPasswordPrompt');
                     deletePasswordGroup.style.display = 'block';
-                    deleteConfirmBtn.textContent = 'Fiók törlése';
+                    deleteConfirmBtn.textContent = i18n.translate('settings.deleteAccount');
                     isPasswordStep = true;
                     deletePasswordInput.focus();
                 } else {
@@ -1745,13 +1668,13 @@
                     const password = deletePasswordInput.value.trim();
                     
                     if (!password) {
-                        deleteModalError.textContent = 'A jelszó megadása kötelező!';
+                        deleteModalError.textContent = i18n.translate('auth.passwordRequired');
                         return;
                     }
                     
                     deleteModalError.textContent = '';
                     deleteConfirmBtn.disabled = true;
-                    deleteConfirmBtn.textContent = 'Törlés...';
+                    deleteConfirmBtn.textContent = i18n.translate('common.deleting');
                     
                     const token = localStorage.getItem('token');
                     
@@ -1775,10 +1698,10 @@
 
                         if (response.ok) {
                             // Sikeres törlés
-                            deleteModalMessage.textContent = 'Fiókod sikeresen törölve lett.';
+                            deleteModalMessage.textContent = i18n.translate('auth.deleteAccount.success');
                             deletePasswordGroup.style.display = 'none';
                             deleteConfirmBtn.style.display = 'none';
-                            deleteCancelBtn.textContent = 'Bezárás';
+                            deleteCancelBtn.textContent = i18n.translate('common.close');
                             
                             // Átirányítás bejelentkezéshez 2 másodperc múlva
                             setTimeout(() => {
@@ -1794,15 +1717,15 @@
                                 window.location.href = 'auth';
                                 return;
                             }
-                            deleteModalError.textContent = data.error || data.message || 'Ismeretlen hiba történt';
+                            deleteModalError.textContent = data.error || data.message || i18n.translate('common.unknownError');
                             deleteConfirmBtn.disabled = false;
-                            deleteConfirmBtn.textContent = 'Fiók törlése';
+                            deleteConfirmBtn.textContent = i18n.translate('settings.deleteAccount');
                         }
                     } catch (error) {
                         console.error('Error deleting account:', error);
-                        deleteModalError.textContent = 'Hiba történt. Kérlek próbáld újra később.';
+                        deleteModalError.textContent = i18n.translate('common.unknownError');
                         deleteConfirmBtn.disabled = false;
-                        deleteConfirmBtn.textContent = 'Fiók törlése';
+                        deleteConfirmBtn.textContent = i18n.translate('settings.deleteAccount');
                     }
                 }
             };

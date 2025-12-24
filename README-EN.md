@@ -118,8 +118,6 @@ POST   /user/register           { username, email, password }
 POST   /user/login              { username, password }
 POST   /user/verify-email       { token }
 POST   /user/resend-verification
-POST   /user/password-reset     { email }
-PUT    /user/password-reset     { token, new_password }
 GET    /user
 DELETE /user/delete             { password }
 ```

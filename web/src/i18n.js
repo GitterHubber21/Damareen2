@@ -38,6 +38,37 @@ const translations = {
         'dashboard.confirmDelete': 'Are you sure you want to delete',
         'dashboard.worldDeleted': 'World deleted successfully',
         'dashboard.error': 'Error occurred',
+        'dashboard.chooseWorld': 'Choose World',
+        'dashboard.discovery': 'Discovery',
+        'dashboard.start': 'Start',
+        
+        'settings.title': 'Settings',
+        'settings.deleteAccount': 'Delete Account',
+        
+        'auth.logout.confirmMessage': 'Are you sure you want to logout?',
+        'auth.deleteAccount.title': 'Delete Account',
+        'auth.deleteAccount.confirmMessage': 'Are you sure you want to delete your account? This action cannot be undone!',
+        'auth.deleteAccount.enterPassword': 'Enter your password:',
+        
+        'common.next': 'Next',
+        'common.send': 'Send',
+        'common.noEmail': 'No Email',
+        'common.emailSent': 'Email sent!',
+        'common.password': 'Password',
+        'common.updated': 'Updated!',
+        'common.sending': 'Sending...',
+        'common.deleting': 'Deleting...',
+        'common.unknownError': 'An error occurred. Please try again later.',
+        
+        'dashboard.noDiscoveryWorlds': 'No new worlds created yet',
+        'dashboard.noOwnWorlds': 'You have no worlds yet',
+        'dashboard.loadError': 'Error loading worlds',
+        'dashboard.selected': 'Selected: ',
+        'dashboard.selectWorldError': 'Please select a world!',
+        
+        'auth.deleteAccount.enterPasswordPrompt': 'Enter your password to continue:',
+        'auth.deleteAccount.success': 'Account deleted successfully.',
+        'auth.passwordRequired': 'Password is required!',
         
         
         'game.title': 'Game',
@@ -129,6 +160,37 @@ const translations = {
         'dashboard.confirmDelete': 'Biztosan törölni szeretnéd',
         'dashboard.worldDeleted': 'Világ sikeresen törölve',
         'dashboard.error': 'Hiba történt',
+        'dashboard.chooseWorld': 'Válassz világot',
+        'dashboard.discovery': 'Felfedezés',
+        'dashboard.start': 'Kezdés',
+        
+        'settings.title': 'Beállítások',
+        'settings.deleteAccount': 'Fiók törlése',
+        
+        'auth.logout.confirmMessage': 'Biztosan ki szeretnél jelentkezni?',
+        'auth.deleteAccount.title': 'Fiók törlése',
+        'auth.deleteAccount.confirmMessage': 'Biztosan törölni szeretnéd a fiókodat? Ez a művelet nem vonható vissza!',
+        'auth.deleteAccount.enterPassword': 'Add meg a jelszavad:',
+        
+        'common.next': 'Tovább',
+        'common.send': 'Küldés',
+        'common.noEmail': 'Nincs e-mail',
+        'common.emailSent': 'Email elküldve!',
+        'common.password': 'Jelszó',
+        'common.updated': 'Frissítve!',
+        'common.sending': 'Küldés...',
+        'common.deleting': 'Törlés...',
+        'common.unknownError': 'Hiba történt. Kérlek próbáld újra később.',
+        
+        'dashboard.noDiscoveryWorlds': 'Még nincs létrehozva új világ',
+        'dashboard.noOwnWorlds': 'Még nincs saját világod',
+        'dashboard.loadError': 'Hiba a világok betöltésekor',
+        'dashboard.selected': 'Kiválasztva: ',
+        'dashboard.selectWorldError': 'Kérlek válassz egy világot!',
+        
+        'auth.deleteAccount.enterPasswordPrompt': 'A folytatáshoz add meg a jelszavadat:',
+        'auth.deleteAccount.success': 'Fiókod sikeresen törölve lett.',
+        'auth.passwordRequired': 'A jelszó megadása kötelező!',
         
         
         'game.title': 'Játék',
@@ -214,6 +276,11 @@ const i18n = {
             } else {
                 element.textContent = translation;
             }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(element => {
+            const key = element.getAttribute('data-i18n-title');
+            element.title = this.translate(key);
         });
         
         
