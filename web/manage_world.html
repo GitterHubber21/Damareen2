@@ -1542,28 +1542,28 @@ h1:focus {
     </button>
 
     <div class="world-actions">
-        <button class="action-btn" id="create-world-btn" onclick="createWorld()"><span class="btn-text-full">Világ létrehozása</span><span class="btn-text-short" style="display:none;">Létrehozás</span></button>
-        <button class="action-btn danger" id="delete-world-btn" onclick="deleteWorld()" disabled style="opacity: 0.5; cursor: not-allowed;"><span class="btn-text-full">Világ törlése</span><span class="btn-text-short" style="display:none;">Törlés</span></button>
+        <button class="action-btn" id="create-world-btn" onclick="createWorld()"><span class="btn-text-full">Create World</span><span class="btn-text-short" style="display:none;">Create</span></button>
+        <button class="action-btn danger" id="delete-world-btn" onclick="deleteWorld()" disabled style="opacity: 0.5; cursor: not-allowed;"><span class="btn-text-full">Delete World</span><span class="btn-text-short" style="display:none;">Delete</span></button>
     </div>
 
-  <h1 id="world-name" spellcheck="false">Világ neve: <input type="text" id="world-name-input" placeholder="Kezdj gépelni" aria-label="Világ neve"></h1>
+  <h1 id="world-name" spellcheck="false">World Name: <input type="text" id="world-name-input" placeholder="Start typing" aria-label="World Name"></h1>
 
     <div class="main-container">
         <div class="left-panel">
             <div class="tabs-container">
-                <button class="tab-button active" data-tab="card-creation" id="card-creation-tab" disabled>Kártyakészítés</button>
-                <button class="tab-button" data-tab="dungeon-creation" id="dungeon-creation-tab" disabled>Kazamata készítés</button>
+                <button class="tab-button active" data-tab="card-creation" id="card-creation-tab" disabled>Card Creation</button>
+                <button class="tab-button" data-tab="dungeon-creation" id="dungeon-creation-tab" disabled>Dungeon Creation</button>
             </div>
 
             <div class="tab-content active" id="card-creation">
                 <form class="card-form" id="card-form">
                     <div class="card-preview">
                         <select class="card-preview-type type-selector" id="card-type" required disabled>
-                            <option value="">Típus</option>
-                            <option value="monster">🔥 Tűz</option>
-                            <option value="hero">💧 Víz</option>
-                            <option value="spell">🌍 Föld</option>
-                            <option value="defense">🌬️ Levegő</option>
+                            <option value="">Type</option>
+                            <option value="monster">🔥 Fire</option>
+                            <option value="hero">💧 Water</option>
+                            <option value="spell">🌍 Earth</option>
+                            <option value="defense">🌬️ Air</option>
                         </select>
                         
                         <div class="card-preview-image" id="preview-area">
@@ -1576,7 +1576,7 @@ h1:focus {
                             type="text" 
                             class="card-preview-name" 
                             id="card-name" 
-                            placeholder="Kártya neve" 
+                            placeholder="Card Name" 
                             required
                             disabled
                         >
@@ -1609,37 +1609,37 @@ h1:focus {
                         </div>
             <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px; width:100%;">
               <select id="assign-mode" class="card-preview-name" disabled>
-                <option value="">Kiosztás nélkül</option>
-                <option value="single">Egy felhasználónak</option>
-                <option value="multiple">Több felhasználónak</option>
-                <option value="all">Mindenkinek</option>
+                <option value="">Without Assignment</option>
+                <option value="single">To One User</option>
+                <option value="multiple">To Multiple Users</option>
+                <option value="all">To Everyone</option>
               </select>
               <select id="give-select" class="card-preview-name" style="display:none;" disabled>
-                <option value="">Válassz felhasználót</option>
+                <option value="">Select User</option>
               </select>
               <div id="multi-select-container" style="display:none; max-height:120px; overflow-y:auto; background:rgba(196,155,59,0.05); border:2px solid rgba(196,155,59,0.3); border-radius:8px; padding:8px;"></div>
             </div>
                     </div>
-                    <button type="submit" class="create-btn" disabled>Kártya létrehozása</button>
+                    <button type="submit" class="create-btn" disabled>Create Card</button>
                 </form>
             </div>
 
             <div class="tab-content" id="dungeon-creation">
                 <div class="dungeon-builder">
                     <div class="dungeon-sequence">
-                        <div class="dungeon-sequence-title">Kazamata sorrend (kattints a gyűjteményben)</div>
+                        <div class="dungeon-sequence-title">Dungeon Sequence (click on cards in collection)</div>
                         <div class="sequence-list" id="sequence-list">
-                            <div class="empty-message">Kattints a kártyákra a sorrend kialakításához</div>
+                            <div class="empty-message">Click on cards to build the sequence</div>
                         </div>
                         <div style="display: flex; gap: 10px; margin-top: 10px;">
-                            <button class="clear-sequence-btn" id="clear-sequence-btn" style="display: none; flex: 1;">Törlés</button>
-                            <button class="action-btn" id="create-dungeon-btn" onclick="createDungeon()" style="flex: 1; margin: 0;">Kazamata létrehozása</button>
+                            <button class="clear-sequence-btn" id="clear-sequence-btn" style="display: none; flex: 1;">Clear</button>
+                            <button class="action-btn" id="create-dungeon-btn" onclick="createDungeon()" style="flex: 1; margin: 0;">Create Dungeon</button>
                         </div>
                     </div>
                     <div class="available-cards">
-                        <div class="available-cards-title">Kazamaták</div>
+                        <div class="available-cards-title">Dungeons</div>
                         <div class="available-cards-grid" id="available-cards-grid">
-                            <div class="empty-message">Még nincsenek kazamaták...</div>
+                            <div class="empty-message">No dungeons yet...</div>
                         </div>
                     </div>
                 </div>
@@ -1647,37 +1647,37 @@ h1:focus {
         </div>
 
         <div class="right-panel">
-            <div class="panel-title">Gyűjtemény</div>
+            <div class="panel-title">Collection</div>
             <div class="collection-area" id="collection-area">
-                <div class="collection-placeholder">Még nincsenek kártyák...</div>
+                <div class="collection-placeholder">No cards yet...</div>
             </div>
         </div>
     </div>
 
     <div class="modal-overlay" id="leader-modal">
         <div class="modal-content">
-            <div class="modal-title">Vezérkártya készítése</div>
+            <div class="modal-title">Create Leader Card</div>
             <form class="modal-form" id="leader-form">
                 <div class="modal-form-group">
-                    <label class="modal-label" for="leader-name">Vezérkártya neve</label>
-                    <input type="text" class="modal-input" id="leader-name" placeholder="Pl.: Sárkány Vezér" required>
+                    <label class="modal-label" for="leader-name">Leader Card Name</label>
+                    <input type="text" class="modal-input" id="leader-name" placeholder="E.g.: Dragon Leader" required>
                 </div>
                 <div class="modal-form-group">
-                    <label class="modal-label">Melyik statot duplázod?</label>
+                    <label class="modal-label">Which stat to double?</label>
                     <div class="stat-choice">
                         <div class="stat-option" data-stat="health">
-                            <div class="stat-option-label">Életerő</div>
+                            <div class="stat-option-label">Health</div>
                             <div class="stat-option-value" id="leader-health-preview">0</div>
                         </div>
                         <div class="stat-option" data-stat="damage">
-                            <div class="stat-option-label">Sebzés</div>
+                            <div class="stat-option-label">Damage</div>
                             <div class="stat-option-value" id="leader-damage-preview">0</div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-buttons">
-                    <button type="submit" class="modal-btn modal-btn-create">Létrehozás</button>
-                    <button type="button" class="modal-btn modal-btn-cancel" id="cancel-leader">Mégse</button>
+                    <button type="submit" class="modal-btn modal-btn-create">Create</button>
+                    <button type="button" class="modal-btn modal-btn-cancel" id="cancel-leader">Cancel</button>
                 </div>
             </form>
         </div>
@@ -1685,15 +1685,15 @@ h1:focus {
 
     <div class="modal-overlay" id="dungeon-modal">
         <div class="modal-content">
-            <div class="modal-title">Kazamata létrehozása</div>
+            <div class="modal-title">Create Dungeon</div>
             <form class="modal-form" id="dungeon-form">
                 <div class="modal-form-group">
-                    <label class="modal-label" for="dungeon-name">Kazamata neve</label>
-                    <input type="text" class="modal-input" id="dungeon-name" placeholder="Pl.: Első kazamata" required>
+                    <label class="modal-label" for="dungeon-name">Dungeon Name</label>
+                    <input type="text" class="modal-input" id="dungeon-name" placeholder="E.g.: First Dungeon" required>
                 </div>
                 <div class="modal-buttons">
-                    <button type="submit" class="modal-btn modal-btn-create">Létrehozás</button>
-                    <button type="button" class="modal-btn modal-btn-cancel" id="cancel-dungeon">Mégse</button>
+                    <button type="submit" class="modal-btn modal-btn-create">Create</button>
+                    <button type="button" class="modal-btn modal-btn-cancel" id="cancel-dungeon">Cancel</button>
                 </div>
             </form>
         </div>
@@ -1701,15 +1701,15 @@ h1:focus {
 
   <div class="modal-overlay" id="give-modal">
     <div class="modal-content">
-      <div class="modal-title">Kártya kiosztása</div>
+      <div class="modal-title">Assign Card</div>
       <form class="modal-form" id="give-form">
         <div class="modal-form-group">
-          <label class="modal-label" for="give-user">Válassz felhasználót</label>
+          <label class="modal-label" for="give-user">Select User</label>
           <select id="give-user" class="modal-input" required></select>
         </div>
         <div class="modal-buttons">
-          <button type="submit" class="modal-btn modal-btn-create">Kiosztás</button>
-          <button type="button" class="modal-btn modal-btn-cancel" id="cancel-give">Mégse</button>
+          <button type="submit" class="modal-btn modal-btn-create">Assign</button>
+          <button type="button" class="modal-btn modal-btn-cancel" id="cancel-give">Cancel</button>
         </div>
       </form>
     </div>
@@ -1717,15 +1717,15 @@ h1:focus {
 
   <div class="modal-overlay" id="remove-modal">
     <div class="modal-content">
-      <div class="modal-title">Kártya visszavonása</div>
+      <div class="modal-title">Revoke Card</div>
       <form class="modal-form" id="remove-form">
         <div class="modal-form-group">
-          <label class="modal-label">Válassz felhasználó(ka)t</label>
+          <label class="modal-label">Select User(s)</label>
           <div id="remove-users" style="max-height:180px; overflow-y:auto; background:rgba(196,155,59,0.05); border:2px solid rgba(196,155,59,0.3); border-radius:8px; padding:8px;"></div>
         </div>
         <div class="modal-buttons">
-          <button type="submit" class="modal-btn modal-btn-create">Eltávolítás</button>
-          <button type="button" class="modal-btn modal-btn-cancel" id="cancel-remove">Mégse</button>
+          <button type="submit" class="modal-btn modal-btn-create">Remove</button>
+          <button type="button" class="modal-btn modal-btn-cancel" id="cancel-remove">Cancel</button>
         </div>
       </form>
     </div>
@@ -1735,7 +1735,7 @@ h1:focus {
     <div class="custom-alert" id="custom-alert">
         <div class="alert-icon" id="alert-icon">⚠️</div>
         <div class="alert-message" id="alert-message"></div>
-        <button class="alert-button" id="alert-button" onclick="closeAlert()">Rendben</button>
+        <button class="alert-button" id="alert-button" onclick="closeAlert()">OK</button>
     </div>
 
     <script>
@@ -1932,7 +1932,7 @@ h1:focus {
             button.addEventListener('click', () => {
                 // Ha fül le van tiltva, figyelmeztetés
                 if (button.disabled) {
-                    showAlert('Először hozz létre egy világot!', 'warning');
+                    showAlert('Create a world first!', 'warning');
                     return;
                 }
                 
@@ -1964,7 +1964,7 @@ h1:focus {
             const grid = document.getElementById('available-cards-grid');
             
             if (worldDungeons.length === 0) {
-                grid.innerHTML = '<div class="empty-message">Még nincsenek kazamaták...</div>';
+                grid.innerHTML = '<div class="empty-message">No dungeons yet...</div>';
                 return;
             }
 
@@ -1982,7 +1982,7 @@ h1:focus {
                     position: relative;
                 `;
                 
-                const dungeonName = dungeon.name || `Kazamata #${index + 1}`;
+                const dungeonName = dungeon.name || `Dungeon #${index + 1}`;
                 const cardSequence = dungeon.list_of_card_ids || dungeon.card_sequence || [];
                 
                 let cardsHTML = '';
@@ -2021,7 +2021,7 @@ h1:focus {
                         🏰 ${dungeonName}
                     </div>
                     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-                        ${cardsHTML || '<span style="color: rgba(196, 155, 59, 0.5); font-style: italic;">Nincsenek kártyák</span>'}
+                        ${cardsHTML || '<span style="color: rgba(196, 155, 59, 0.5); font-style: italic;">No cards</span>'}
                     </div>
                 `;
                 
@@ -2077,7 +2077,7 @@ h1:focus {
     document.getElementById('card-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!currentWorldId) {
-        showAlert('Először hozz létre egy világot!', 'warning');
+        showAlert('Create a world first!', 'warning');
         return;
       }
       const typeMapping = {
@@ -2090,11 +2090,11 @@ h1:focus {
       const health = parseInt(document.getElementById('card-health').value);
       const damage = parseInt(document.getElementById('card-damage').value);
       if (isNaN(health) || health < 1 || health > 100) {
-        showAlert('Az életerőnek 1 és 100 között kell lennie!', 'error');
+        showAlert('Health must be between 1 and 100!', 'error');
         return;
       }
       if (isNaN(damage) || damage < 2 || damage > 100) {
-        showAlert('A sebzésnek 2 és 100 között kell lennie!', 'error');
+        showAlert('Damage must be between 2 and 100!', 'error');
         return;
       }
       
@@ -2137,17 +2137,17 @@ h1:focus {
           const result = await response.json();
           if (result.data && result.data.card) cards.push(result.data.card);
           if (result.data && result.data.assigned_cards && Array.isArray(result.data.assigned_cards)) {
-            showAlert('Kártya létrehozva és kiosztva ' + result.data.assigned_cards.length + ' felhasználónak', 'success');
+            showAlert('Card created and assigned to ' + result.data.assigned_cards.length + ' user(s)', 'success');
           } else {
-            showAlert('Kártya létrehozva', 'success');
+            showAlert('Card created', 'success');
           }
         } else {
           const errorData = await response.json();
-          showAlert('Hiba: ' + (errorData.error || 'Nem sikerült létrehozni a kártyát'), 'error');
+          showAlert('Error: ' + (errorData.error || 'Failed to create card'), 'error');
           return;
         }
       } catch (error) {
-        showAlert('Hiba történt a kártya létrehozása során!', 'error');
+        showAlert('Error occurred while creating card!', 'error');
         return;
       }
       renderCollection();
@@ -2201,14 +2201,14 @@ h1:focus {
             e.preventDefault();
             
             if (!leaderBaseCard || !selectedStat) {
-                showAlert('Kérlek válassz egy statot, amit duplázni szeretnél!', 'warning');
+                showAlert('Please select a stat to double!', 'warning');
                 return;
             }
             
             const leaderName = document.getElementById('leader-name').value.trim();
             
             if (!leaderName) {
-                showAlert('A vezér neve kötelező!', 'warning');
+                showAlert('Leader name is required!', 'warning');
                 return;
             }
             
@@ -2256,11 +2256,11 @@ h1:focus {
                     
                 } else {
                     const errorData = await response.json();
-                    showAlert('Hiba: ' + (errorData.error || 'Nem sikerült létrehozni a vezérkártyát'), 'error');
+                    showAlert('Error: ' + (errorData.error || 'Failed to create leader card'), 'error');
                 }
             } catch (error) {
                 console.error('Error creating leader:', error);
-                showAlert('Hiba történt a vezérkártya létrehozása során!', 'error');
+                showAlert('Error occurred while creating leader card!', 'error');
             }
             
             renderCollection();
@@ -2273,7 +2273,7 @@ h1:focus {
             const dungeonName = document.getElementById('dungeon-name').value.trim();
             
             if (!dungeonName) {
-                showAlert('Kérlek adj nevet a kazamatának!', 'warning');
+                showAlert('Please give the dungeon a name!', 'warning');
                 return;
             }
             
@@ -2329,7 +2329,7 @@ h1:focus {
 
                 if (!worldsResponse.ok) {
                     console.error('Failed to load worlds list');
-                    showAlert('Nem sikerült betölteni a világok listáját!', 'error');
+                    showAlert('Failed to load worlds list!', 'error');
                     return false;
                 }
 
@@ -2338,7 +2338,7 @@ h1:focus {
         const worldName = worldsData.data?.worlds?.[worldId];
                 
                 if (!worldName) {
-                    showAlert('Nem található ilyen világ!', 'error');
+                    showAlert('World not found!', 'error');
                     return false;
                 }
 
@@ -2352,7 +2352,7 @@ h1:focus {
                 return true;
             } catch (error) {
                 console.error('Error loading world from URL:', error);
-                showAlert('Hiba történt a világ betöltése során!', 'error');
+                showAlert('Error occurred while loading world!', 'error');
                 return false;
             }
         }
@@ -2433,11 +2433,11 @@ h1:focus {
       if (assignMode) assignMode.disabled = false;
       
       if (giveSelect) {
-        giveSelect.innerHTML = '<option value="">Válassz felhasználót</option>';
+        giveSelect.innerHTML = '<option value="">Select User</option>';
         worldUsers.forEach(u => {
           const opt = document.createElement('option');
           opt.value = u.id;
-          opt.textContent = u.username + (u.is_master ? ' (mester)' : '');
+          opt.textContent = u.username + (u.is_master ? ' (master)' : '');
           giveSelect.appendChild(opt);
         });
       }
@@ -2453,7 +2453,7 @@ h1:focus {
           checkbox.className = 'multi-user-checkbox';
           checkbox.style.cursor = 'pointer';
           label.appendChild(checkbox);
-          label.appendChild(document.createTextNode(u.username + (u.is_master ? ' (mester)' : '')));
+          label.appendChild(document.createTextNode(u.username + (u.is_master ? ' (master)' : '')));
           multiContainer.appendChild(label);
         });
       }
@@ -2466,7 +2466,7 @@ h1:focus {
       worldUsers.forEach(u => {
         const opt = document.createElement('option');
         opt.value = u.id;
-        opt.textContent = u.username + (u.is_master ? ' (mester)' : '');
+        opt.textContent = u.username + (u.is_master ? ' (master)' : '');
         select.appendChild(opt);
       });
       document.getElementById('give-modal').classList.add('active');
@@ -2496,13 +2496,13 @@ h1:focus {
           await response.json();
           
           renderCollection();
-          showAlert('Kártya kiosztva', 'success');
+          showAlert('Card assigned', 'success');
         } else {
           const err = await response.json();
-          showAlert(err.error || 'Hiba történt', 'error');
+          showAlert(err.error || 'Error occurred', 'error');
         }
       } catch (e) {
-        showAlert('Hiba történt', 'error');
+        showAlert('Error occurred', 'error');
       }
       closeGiveModal();
     });
@@ -2521,7 +2521,7 @@ h1:focus {
         cb.value = u.id;
         cb.style.cursor = 'pointer';
         label.appendChild(cb);
-        label.appendChild(document.createTextNode(u.username + (u.is_master ? ' (mester)' : '')));
+        label.appendChild(document.createTextNode(u.username + (u.is_master ? ' (master)' : '')));
         box.appendChild(label);
       });
       document.getElementById('remove-modal').classList.add('active');
@@ -2538,7 +2538,7 @@ h1:focus {
       if (!removeBaseCardId) return;
       const selected = Array.from(document.querySelectorAll('#remove-users input[type="checkbox"]:checked')).map(cb => cb.value);
       if (selected.length === 0) {
-        showAlert('Válassz ki legalább egy felhasználót!', 'warning');
+        showAlert('Select at least one user!', 'warning');
         return;
       }
       try {
@@ -2550,13 +2550,13 @@ h1:focus {
         });
         if (resp.ok) {
           await resp.json();
-          showAlert('Kártya visszavonva a kijelölt felhasználóktól', 'success');
+          showAlert('Card revoked from selected users', 'success');
         } else {
           const err = await resp.json();
-          showAlert(err.error || 'Hiba történt a visszavonás során', 'error');
+          showAlert(err.error || 'Error occurred during revocation', 'error');
         }
       } catch (_) {
-        showAlert('Hiba történt a visszavonás során', 'error');
+        showAlert('Error occurred during revocation', 'error');
       }
       closeRemoveModal();
     });
@@ -2599,7 +2599,7 @@ h1:focus {
             
       // Név validálás
       if (worldName === '') {
-                showAlert('Kérlek adj nevet a világnak!', 'warning');
+                showAlert('Please give the world a name!', 'warning');
                 return;
             }
             
@@ -2609,7 +2609,7 @@ h1:focus {
                 
                 // Felhasználó adatok ellenőrzése
                 if (!userStr) {
-                    showAlert('Nem található felhasználó adat. Kérlek jelentkezz be újra!', 'error');
+                    showAlert('User data not found. Please log in again!', 'error');
                     return;
                 }
                 
@@ -2617,7 +2617,7 @@ h1:focus {
                 const userId = user.id;
                 
                 if (!userId) {
-                    showAlert('Nem található felhasználó azonosító. Kérlek jelentkezz be újra!', 'error');
+                    showAlert('User ID not found. Please log in again!', 'error');
                     return;
                 }
                 
@@ -2647,7 +2647,7 @@ h1:focus {
                     
                     // UI aktiválása
                     enableWorldUI(false);
-                    showAlert('Világ sikeresen létrehozva!', 'success');
+                    showAlert('World created successfully!', 'success');
                     
                     // Adatok betöltése
                     await loadWorldUsers();
@@ -2657,11 +2657,11 @@ h1:focus {
                     renderDungeonsList();
                 } else {
                     const errorData = await response.json();
-                    showAlert('Hiba: ' + (errorData.error || 'Nem sikerült létrehozni a világot'), 'error');
+                    showAlert('Error: ' + (errorData.error || 'Failed to create world'), 'error');
                 }
             } catch (error) {
                 console.error('Error creating world:', error);
-                showAlert('Hiba történt a világ létrehozása során!', 'error');
+                showAlert('Error occurred while creating world!', 'error');
             }
         }
 
@@ -2679,24 +2679,24 @@ h1:focus {
             
             // Üres kazamata ellenőrzés
             if (totalCards === 0) {
-                showAlert('A kazamata 1, 4 vagy 6 kártyát kell tartalmazzon', 'warning');
+                showAlert('Dungeon must contain 1, 4 or 6 cards', 'warning');
                 return;
             }
             
             // Kártyaszám validálás (1, 4 vagy 6 kártya lehet)
             if (totalCards !== 1 && totalCards !== 4 && totalCards !== 6) {
-                showAlert('A kazamata 1, 4 vagy 6 kártyát kell tartalmazzon', 'warning');
+                showAlert('Dungeon must contain 1, 4 or 6 cards', 'warning');
                 return;
             }
             
             // Vezér kötelező 4 és 6 kártyás kazamatában
             if ((totalCards === 4 || totalCards === 6) && !hasLeader) {
-                showAlert('Az utolsó kártya csak vezér lehet', 'warning');
+                showAlert('Last card must be a leader', 'warning');
                 return;
             }
             
             if (!currentWorldId) {
-                showAlert('Először hozz létre egy világot!', 'warning');
+                showAlert('Create a world first!', 'warning');
                 return;
             }
             
@@ -2706,7 +2706,7 @@ h1:focus {
         async function submitDungeonCreation(dungeonName) {
             const isDuplicate = worldDungeons.some(dungeon => dungeon.name === dungeonName);
             if (isDuplicate) {
-                showAlert('Ezzel a névvel már létezik kazamata', 'warning');
+                showAlert('A dungeon with this name already exists', 'warning');
                 return;
             }
             
@@ -2730,7 +2730,7 @@ h1:focus {
                 });
                 
                 if (response.ok) {
-                    showAlert('Kazamata sikeresen létrehozva!', 'success');
+                    showAlert('Dungeon created successfully!', 'success');
                     dungeonSequence = [];
                     dungeonLeaderCard = null;
                     await loadDungeons();
@@ -2740,11 +2740,11 @@ h1:focus {
                     updateCreateDungeonButton();
                 } else {
                     const error = await response.json();
-                    showAlert('Hiba: ' + (error.error || error.message || 'Nem sikerült létrehozni a kazamatát'), 'error');
+                    showAlert('Error: ' + (error.error || error.message || 'Failed to create dungeon'), 'error');
                 }
             } catch (error) {
                 console.error('Error creating dungeon:', error);
-                showAlert('Hiba történt a kazamata létrehozása során!', 'error');
+                showAlert('Error occurred while creating dungeon!', 'error');
             }
         }
 
@@ -2759,12 +2759,12 @@ h1:focus {
         async function deleteWorld() {
             // Ellenőrzi, hogy van-e aktív világ
             if (!currentWorldId) {
-                showAlert('Nincs aktív világ törölni!', 'warning');
+                showAlert('No active world to delete!', 'warning');
                 return;
             }
             
             // Megerősítés kérése
-            if (!confirm('Biztosan törölni szeretnéd ezt a világot? Ez nem visszavonható!')) {
+            if (!confirm('Are you sure you want to delete this world? This cannot be undone!')) {
                 return;
             }
             
@@ -2784,7 +2784,7 @@ h1:focus {
                 });
                 
                 if (response.ok) {
-                    showAlert('Világ sikeresen törölve!', 'success');
+                    showAlert('World deleted successfully!', 'success');
                     
                     // Állapot visszaállítása
                     currentWorldId = null;
@@ -2810,16 +2810,16 @@ h1:focus {
                     document.getElementById('card-creation-tab').classList.add('active');
                     document.getElementById('card-creation').classList.add('active');
                 } else {
-                    showAlert('Hiba történt a világ törlése során!', 'error');
+                    showAlert('Error occurred while deleting world!', 'error');
                 }
             } catch (error) {
                 console.error('Error deleting world:', error);
-                showAlert('Hiba történt a világ törlése során!', 'error');
+                showAlert('Error occurred while deleting world!', 'error');
             }
         }
 
         async function deleteDungeon(dungeonId) {
-            if (!confirm('Biztosan törölni szeretnéd ezt a kazamatát?')) {
+            if (!confirm('Are you sure you want to delete this dungeon?')) {
                 return;
             }
             
@@ -2838,15 +2838,15 @@ h1:focus {
                 });
                 
                 if (response.ok) {
-                    showAlert('Kazamata sikeresen törölve!', 'success');
+                    showAlert('Dungeon deleted successfully!', 'success');
                     await loadDungeons();
                     renderDungeonsList();
                 } else {
-                    showAlert('Hiba történt a kazamata törlése során!', 'error');
+                    showAlert('Error occurred while deleting dungeon!', 'error');
                 }
             } catch (error) {
                 console.error('Error deleting dungeon:', error);
-                showAlert('Hiba történt a kazamata törlése során!', 'error');
+                showAlert('Error occurred while deleting dungeon!', 'error');
             }
         }
 
@@ -2857,7 +2857,7 @@ h1:focus {
             const totalCards = dungeonSequence.length + (dungeonLeaderCard ? 1 : 0);
             
             if (totalCards === 0) {
-                sequenceList.innerHTML = '<div class="empty-message">Kattints a kártyákra a sorrend kialakításához</div>';
+                sequenceList.innerHTML = '<div class="empty-message">Click on cards to build the sequence</div>';
                 clearBtn.style.display = 'none';
                 return;
             }
@@ -2897,11 +2897,11 @@ h1:focus {
       const collectionArea = document.getElementById('collection-area');
       const currentTab = document.querySelector('.tab-button.active')?.dataset.tab || 'card-creation';
       if (!currentWorldId) {
-        collectionArea.innerHTML = '<div class="collection-placeholder">🌍<br><br>Először hozz létre egy világot a bal felső sarokban!</div>';
+        collectionArea.innerHTML = '<div class="collection-placeholder">🌍<br><br>First, create a world in the top left corner!</div>';
         return;
       }
       if (cards.length === 0) {
-        collectionArea.innerHTML = '<div class="collection-placeholder">Még nincsenek kártyák...</div>';
+        collectionArea.innerHTML = '<div class="collection-placeholder">No cards yet...</div>';
         return;
       }
       collectionArea.innerHTML = '';
@@ -2916,14 +2916,14 @@ h1:focus {
         cardElement.className = cardClasses;
         cardElement.dataset.cardId = card.id;
         const typeLabels = {
-          't': '🔥 Tűz',
-          'v': '💧 Víz',
-          'f': '🌍 Föld',
-          'l': '🌬️ Levegő',
-          'monster': '🔥 Tűz',
-          'hero': '💧 Víz',
-          'spell': '🌍 Föld',
-          'defense': '🌬️ Levegő'
+          't': '🔥 Fire',
+          'v': '💧 Water',
+          'f': '🌍 Earth',
+          'l': '🌬️ Air',
+          'monster': '🔥 Fire',
+          'hero': '💧 Water',
+          'spell': '🌍 Earth',
+          'defense': '🌬️ Air'
         };
         const showActionBtns = currentTab === 'card-creation' ? 'visible' : '';
         
@@ -2974,14 +2974,14 @@ h1:focus {
               } else {
                 
                 if (dungeonLeaderCard !== null) {
-                  showAlert('Egy kazamata csak egy vezért tartalmazhat', 'warning');
+                  showAlert('A dungeon can only contain one leader', 'warning');
                   shakeCard(cardElement);
                   return;
                 }
                 
                 
                 if (dungeonSequence.length === 0) {
-                  showAlert('Vezér nem lehet az első kártya', 'warning');
+                  showAlert('Leader cannot be the first card', 'warning');
                   shakeCard(cardElement);
                   return;
                 }
@@ -2989,7 +2989,7 @@ h1:focus {
                 
                 const normalCardsCount = dungeonSequence.length;
                 if (normalCardsCount !== 3 && normalCardsCount !== 5) {
-                  showAlert('A vezért csak utolsóként szabad választani', 'warning');
+                  showAlert('Leader can only be selected last', 'warning');
                   shakeCard(cardElement);
                   return;
                 }
@@ -3007,7 +3007,7 @@ h1:focus {
                 
                 const totalCards = dungeonSequence.length + (dungeonLeaderCard !== null ? 1 : 0);
                 if (totalCards >= 6) {
-                  showAlert('A kazamata maximum 6 kártyából állhat', 'warning');
+                  showAlert('Dungeon can contain maximum 6 cards', 'warning');
                   shakeCard(cardElement);
                   return;
                 }
@@ -3015,7 +3015,7 @@ h1:focus {
                 
                 const normalCardsCount = dungeonSequence.length;
                 if (normalCardsCount === 5 && dungeonLeaderCard !== null) {
-                  showAlert('Az utolsó kártya csak vezér lehet', 'warning');
+                  showAlert('Last card can only be a leader', 'warning');
                   shakeCard(cardElement);
                   return;
                 }
@@ -3045,7 +3045,7 @@ h1:focus {
             leaderBaseCard = cardId;
             document.getElementById('leader-health-preview').textContent = baseCard.health * 2;
             document.getElementById('leader-damage-preview').textContent = baseCard.damage * 2;
-            document.getElementById('leader-name').value = baseCard.name + ' Vezér';
+            document.getElementById('leader-name').value = baseCard.name + ' Leader';
             
             document.getElementById('leader-modal').classList.add('active');
         }
@@ -3074,7 +3074,7 @@ h1:focus {
                 document.getElementById('placeholder-icon').style.display = 'none';
             }
             
-            document.querySelector('.create-btn').textContent = 'Kártya mentése';
+            document.querySelector('.create-btn').textContent = 'Save Card';
             document.getElementById('card-name').focus();
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3086,7 +3086,7 @@ h1:focus {
             document.getElementById('preview-image').style.display = 'none';
             document.getElementById('placeholder-icon').style.display = 'block';
             currentImageData = null;
-            document.querySelector('.create-btn').textContent = 'Kártya létrehozása';
+            document.querySelector('.create-btn').textContent = 'Create Card';
         }
 
     async function deleteCard(cardId) {
@@ -3094,7 +3094,7 @@ h1:focus {
       if (currentTab !== 'card-creation') {
         return;
       }
-      if (!confirm('Biztosan törölni szeretnéd ezt a kártyát?')) {
+      if (!confirm('Are you sure you want to delete this card?')) {
         return;
       }
       try {
@@ -3114,11 +3114,11 @@ h1:focus {
           renderDungeonSequence();
         } else {
           const error = await response.json();
-          showAlert('Hiba történt a kártya törlése során: ' + (error.message || error.error || 'Ismeretlen hiba'), 'error');
+          showAlert('Error occurred while deleting card: ' + (error.message || error.error || 'Unknown error'), 'error');
         }
       } catch (err) {
         console.error('Error deleting card:', err);
-        showAlert('Hiba történt a kártya törlése során!', 'error');
+        showAlert('Error occurred while deleting card!', 'error');
       }
     }
 
